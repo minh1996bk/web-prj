@@ -23,12 +23,15 @@ module.exports = {
         } else {
             return res.json({
                 success: false,
-                msg: 'username not exist or pwd wrong',
+                msg: 'Tài khoản hoặc mật khẩu sai',
             })
         }
     },
 
     logoutAccount: async function doLogout(req, res) {
-
+        if (req.session) {
+            delete req.session.userId;
+        }
+        res.end();
     }
 }
