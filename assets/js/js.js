@@ -153,15 +153,16 @@ function profileOnUpdate() {
 
 
 
-function doLogin() {
+async function doLogin() {
     let account = {
         username: $("#usernamelogin").val(),
         pwd: $("#pwdlogin").val(),
     }
-    console.log(account);
+
+    let rep = await $.post("/login", account);
+    console.log(rep);
 }
 async function doSignin() {
-    console.log($("pwdsignin"));
     let account = {
         username: $("#usernamesignin").val(),
         pwd: $("#pwdsignin").val(),

@@ -18,6 +18,9 @@ module.exports.policies = {
   ***************************************************************************/
 
   // '*': true,
-  'AccountController.registerAccount': 'is-valid-account',
+  AccountController: {
+    registerAccount: 'is-valid-account',
+    loginAccount: 'is-valid-login',
+  }
 
 };
