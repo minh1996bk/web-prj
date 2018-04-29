@@ -171,6 +171,11 @@ async function doSignin() {
     let rep = await $.post("/register", account);
     console.log(rep);
 }
+
+async function doLogout() {
+    await $.get('/logout');
+    
+}
 function logSmt() {
     console.log("ok")
 }

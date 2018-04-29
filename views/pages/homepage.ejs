@@ -17,7 +17,7 @@
 </head>
 <body>
     
-    <div class="jumbotron row" <% isLogIned === true ? hidden : ""%> >
+    <div class="jumbotron row">
         <div id="logocomponent" class="col-md-9">
             <div style="position: fixed;width: 75%;height:44px;">
                 <p>Enjoy Game</p>
@@ -25,8 +25,13 @@
         </div>
         <div id="logincomponent" class="col-md-3">
             <div style="position: fixed;height:44px;">
-                <button data-toggle="modal" data-target="#loginmodal">Đăng nhập</button>
-                <button data-toggle="modal" data-target="#signinmodal">Đăng ký</button>
+                <%if (typeof isLogIned != 'undefined' && isLogIned) {%>
+                    <button onclick="doLogout()">Đăng xuất</button>
+                <%} else {%>
+                    <button data-toggle="modal" data-target="#loginmodal">Đăng nhập</button>
+                    <button data-toggle="modal" data-target="#signinmodal">Đăng ký</button>
+                <%}%>
+
             </div>
             <!-- giao dien modal cho phan login -->
             <div id="signinmodal" class="modal fade" role="dialog">
