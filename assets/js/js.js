@@ -160,14 +160,15 @@ function doLogin() {
     }
     console.log(account);
 }
-function doSignin() {
+async function doSignin() {
     console.log($("pwdsignin"));
     let account = {
         username: $("#usernamesignin").val(),
         pwd: $("#pwdsignin").val(),
         pwdrepeat: $("#pwdrepeatsignin").val(),
     }
-    console.log(account);
+    let rep = await $.post("/register", account);
+    console.log(rep);
 }
 function logSmt() {
     console.log("ok")

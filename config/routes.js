@@ -25,8 +25,12 @@ module.exports.routes = {
   ***************************************************************************/
 
   '/': {
-    view: 'pages/homepage'
+    action: 'home'
   },
+  'post /register' : 'AccountController.registerAccount',
+  'post /login' : 'AccountController.loginAccount',
+  'get /logout' : 'AccountController.logoutAccount'
+  
 
   /***************************************************************************
   *                                                                          *
