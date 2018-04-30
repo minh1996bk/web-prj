@@ -41,6 +41,8 @@ module.exports.routes = {
 
   'get /posts' : 'PostController.getPosts',
   'post /post' : 'PostController.createPost',
+  'post /createLink' : 'LinkController.createLink',
+  'post /updateLink' : 'LinkController.updateLink',
 
   /***************************************************************************
   *                                                                          *
