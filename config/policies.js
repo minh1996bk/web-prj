@@ -21,6 +21,9 @@ module.exports.policies = {
   AccountController: {
     registerAccount: 'is-valid-account',
     loginAccount: 'is-valid-login',
+    updateAccount: ['is-login', 'is-valid-update-account'],
+    getAccountInfo: 'is-login',
+    getSupports: true,
   }
 
 };
