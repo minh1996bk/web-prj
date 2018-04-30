@@ -392,17 +392,26 @@ function showReport(rp) {
     }, 1500);
 }
 
+
 function showCreatePostModal() {
     $('#postmodal').modal('show');
+}
+
+function hideCreatePostModal() {
+    $('#postmodal').modal('hide');
 }
 
 async function doPost() {
     let post = {
         text: $("#post-content").val(),
     }
-    console.log(post);
+    
     let rep = await $.post('/post', post);
-    console.log(rep);
+    if (!rep) return error500();
+    if (rep.success) {
+        hideCreatePostModal();
+    }
+    showReport(rep.msg);
 }
 
 async function doLogin() {
