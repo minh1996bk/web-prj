@@ -3,7 +3,7 @@ module.exports = {
         let data = await Settings.findOne({'version': '1.0.0'});
         return res.json({
             success: true,
-            supports: data,
+            supports: data || {},
         })
     },
     
