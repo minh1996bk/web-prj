@@ -108,6 +108,15 @@ function supportsPageHtm(data) {
     `;
 }
 
+function chatHtml() {
+    return `
+    <div id="chat-box" >
+        blah
+    </div>
+    `
+}
+
+
 function leftSideProfileHtm() {
     return ``;
 }
