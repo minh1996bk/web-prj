@@ -178,7 +178,7 @@ async function doLogin() {
     }
 
     function loginSuccess() {
-        $('#loginmodal').modal('hide');
+        location.reload(true);
     }
 
     function loginFail(msg) {
@@ -194,7 +194,21 @@ async function doSignin() {
         pwdrepeat: $("#pwdrepeatsignin").val(),
     }
     let rep = await $.post("/register", account);
-    console.log(rep);
+    if (!rep) {
+        error500();
+    } else if (rep.success) {
+        registerSuccess();
+    } else {
+        registerFail(rep.msg);
+    }
+    function registerSuccess() {
+        location.reload(true);
+    }
+
+    function registerFail(msg) {
+        let showError = $('#registererror');
+        showError.text(msg);
+    }
 }
 
 async function doLogout() {
