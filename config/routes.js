@@ -32,7 +32,13 @@ module.exports.routes = {
   'get /logout' : 'AccountController.logoutAccount',
   'post /updateAccount' : 'AccountController.updateAccount',
   'get /account' : 'AccountController.getAccountInfo',
-  'get /supports' : 'AccountController.getSupports',
+ 
+
+
+  'get /admin' : 'AdminController.getAdminPage',
+  'get /supports' : 'AdminController.getSupports', 
+  'post /supports' : 'AdminController.updateSupports',
+
 
   /***************************************************************************
   *                                                                          *

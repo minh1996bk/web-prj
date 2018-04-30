@@ -60,11 +60,5 @@ module.exports = {
             account: account,
         });
     },
-    getSupports: async function(req, res) {
-        return res.json({
-            success: true,
-            contactPhone: "0974066924",
-            contactMail: "minh1996bk@gmail.com",
-        })
-    }
+    
 }

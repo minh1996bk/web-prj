@@ -1,0 +1,118 @@
+<!<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>China Chess Network</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="styles/importer.css">
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="js/js.js"></script>
+    <style>
+        .btn-setting {
+            border:none; 
+            background-color: inherit;
+            width:100%;
+            color:white;
+        }
+
+        .btn-setting:hover {
+            background-color: #395889;
+            color: white;
+        }
+    </style>
+    <script>
+        function showReport(rp) {
+            $('#report-content').text(rp);
+            $('#reportmodal').modal('show');
+            setTimeout(() => {
+                $('#reportmodal').modal('hide');
+            }, 1500);
+        }
+        function supportsHtm(supports) {
+            return `
+            <div class="container">
+                <h1>Thông tin hỗ trợ khách hàng</h1>
+                
+                <div class="form-group">
+                    <label for="usr">Số điện thoại hỗ trợ 24/7:</label>
+                    <input type="text" class="form-control" id="phonesupport" value="${supports.phone || ''}">
+                </div>
+                <div class="form-group">
+                    <label for="pwd">Email:</label>
+                    <input type="text" class="form-control" id="emailsupport" value="${supports.email || ''}">
+                </div>
+                <div class="form-group">
+                    <label for="pwd">Địa chỉ liên lạc:</label>
+                    <input type="text" class="form-control" id="addrsupport" value="${supports.address || ''}">
+                </div>
+                <button class="btn" onclick="updateSupports()">Cập nhật</button>
+            </div>
+
+            `
+        }
+        
+        async function renderAppsettings() {
+            let rep = await $.get("/supports");
+            console.log(rep);
+            if (!rep) return showReport("Lỗi hệ thống");
+            if (!rep.success) {
+                return showReport(rep.msg);
+            }
+            let htm = supportsHtm(rep.supports);
+            let contentView = $('#content-view');
+            contentView.append(htm);
+        }
+
+        async function updateSupports() {
+            let updatedSupports = {
+                phone: $("#phonesupport").val(),
+                email: $("#emailsupport").val(),
+                address: $("#addrsupport").val(),
+            }
+            let rep = await $.post('/supports', updatedSupports);
+            if (!rep) return showReport("Lỗi hệ thống");
+            showReport(rep.msg);
+        }
+    </script>
+</head>
+<body>
+    <div id="reportmodal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+                <div class="modal-body form-group">
+                        <h3 id="report-content"></h3>
+                </div>
+                <div class="modal-footer">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-2">
+            <div style="position: fixed; height: 100%; background-color: #5e85c1;width: 16%;">
+                <div id="admin-img" style="height: 160px; width: 120px; background-color: aliceblue;margin: 20px;">
+                    <img src="images/admin.jpg">
+                </div>
+                <p style="padding: 10px 20px 5px 20px;">Nguyen Dinh Minh</p>
+                <div>
+                    <button class="btn btn-setting" onclick="renderAppsettings()">App settings</button>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-9">
+            <div id="content-view" style="position:relative; height: 200%;">
+                
+            </div>
+        </div>
+    </div>
+</body>

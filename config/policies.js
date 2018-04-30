@@ -23,7 +23,11 @@ module.exports.policies = {
     loginAccount: 'is-valid-login',
     updateAccount: ['is-login', 'is-valid-update-account'],
     getAccountInfo: 'is-login',
-    getSupports: true,
+
+  },
+  AdminController: {
+    getAdminPage: ['is-login', 'is-admin'],
+    updateSupports: ['is-login', 'is-admin'],
   }
 
 };
