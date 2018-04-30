@@ -151,6 +151,14 @@ function profileOnUpdate() {
 
 }
 
+function error500() {
+    let htm = `
+        <h1>Internal Server Error</h1>
+    `;
+    let mainView = $("#view-screen");
+    mainView.empty();
+    mainView.append(htm);
+}
 
 
 async function doLogin() {
@@ -160,7 +168,23 @@ async function doLogin() {
     }
 
     let rep = await $.post("/login", account);
-    console.log(rep);
+    if (!rep) {
+        error500();
+    } else if (rep.success) {
+        loginSuccess();
+    } else {
+        loginFail(rep.msg);
+    }
+
+    function loginSuccess() {
+        $('#loginmodal').modal('hide');
+    }
+
+    function loginFail(msg) {
+
+        let showError = $('#loginerror');
+        showError.text(msg);
+    }
 }
 async function doSignin() {
     let account = {
@@ -174,6 +198,7 @@ async function doSignin() {
 
 async function doLogout() {
     await $.get('/logout');
+    location.reload(true);
     
 }
 function logSmt() {
