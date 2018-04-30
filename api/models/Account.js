@@ -13,6 +13,10 @@ module.exports = {
       highschool: 'string',
       university: 'string',
       corp: 'string',
+      roles: {
+          type: 'string',
+          columnType: 'array'
+      }
     },
     createAccount: async function(account) {
         let hashPwd = await bcrypt.hash(account.pwd, salt);
