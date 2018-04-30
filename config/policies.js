@@ -28,6 +28,11 @@ module.exports.policies = {
   AdminController: {
     getAdminPage: ['is-login', 'is-admin'],
     updateSupports: ['is-login', 'is-admin'],
+  },
+
+  PostController: {
+    getPosts: ['is-login'],
+    createPost: 'is-login',
   }
 
 };

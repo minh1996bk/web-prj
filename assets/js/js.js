@@ -242,6 +242,9 @@ function groupOnclick() {
 }
 
 async function friendOnclick() {
+    let rep = await $.get('/posts');
+    if (!rep) return error500();
+    if (!rep.success) return showReport(rep.msg);
     let htm = aPostHtm();
     htm += aPostHtm();
     let mainView = $("#view-screen");
@@ -391,6 +394,15 @@ function showReport(rp) {
 
 function showCreatePostModal() {
     $('#postmodal').modal('show');
+}
+
+async function doPost() {
+    let post = {
+        text: $("#post-content").val(),
+    }
+    console.log(post);
+    let rep = await $.post('/post', post);
+    console.log(rep);
 }
 
 async function doLogin() {

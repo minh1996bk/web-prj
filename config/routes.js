@@ -39,6 +39,8 @@ module.exports.routes = {
   'get /supports' : 'AdminController.getSupports', 
   'post /supports' : 'AdminController.updateSupports',
 
+  'get /posts' : 'PostController.getPosts',
+  'post /post' : 'PostController.createPost',
 
   /***************************************************************************
   *                                                                          *
