@@ -13,6 +13,13 @@ module.exports = {
       highschool: 'string',
       university: 'string',
       corp: 'string',
+      link: {
+          collection: 'link',
+          via: 'owner'
+      },
+      owner: {
+          model: 'link'
+      },
       posts: {
           collection: 'post',
           via: 'owner'
@@ -28,6 +35,22 @@ module.exports = {
       roles: {
           collection: 'role',
           via: 'owners'
+      },
+      talks: {
+          collection: 'talk',
+          via: 'members',
+      },
+      messages: {
+          collection: 'message',
+          via: 'owner'
+      },
+      groups: {
+          collection: 'group',
+          via: 'owner',
+      },
+      ingroups: {
+          collection: 'group',
+          via: 'members'
       }
     },
     createAccount: async function(account) {

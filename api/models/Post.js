@@ -16,6 +16,9 @@ module.exports = {
         sharers: {
             collection: 'account',
             via: 'sharedposts'
+        },
+        group: {
+            model: 'group'
         }
     }
 }

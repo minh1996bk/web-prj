@@ -19,6 +19,7 @@ module.exports = {
 
     },
     getPosts: async function(req, res) {
+        
         res.json({
             success: true,
         })
