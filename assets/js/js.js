@@ -209,6 +209,12 @@ function leftSideProfileHtm() {
     return ``;
 }
 
+function leftSidePostHtm() {
+    return `
+        <button class="btn" onclick="showCreatePostModal()">Tạo bài mới</button>
+    `;
+}
+
 async function profileOnclick() {
     let rep = await $.get('/account');
     if (!rep) return error500();
@@ -241,6 +247,10 @@ async function friendOnclick() {
     let mainView = $("#view-screen");
     mainView.empty();
     mainView.append(htm);
+    let leftHtm = leftSidePostHtm();
+    let leftSide = $("#leftside");
+    leftSide.empty();
+    leftSide.append(leftHtm);
 }
 
 async function gameOnclick() {
@@ -377,6 +387,10 @@ function showReport(rp) {
     setTimeout(() => {
         $('#reportmodal').modal('hide');
     }, 1500);
+}
+
+function showCreatePostModal() {
+    $('#postmodal').modal('show');
 }
 
 async function doLogin() {

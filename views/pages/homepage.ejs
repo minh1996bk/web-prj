@@ -112,8 +112,8 @@
             <div class="col-md-7">
                 <div id="menu-head">
                     <!-- <button class="btn btn-nav" onclick="gameOnclick()">Game</button> -->
-                    <button class="btn btn-nav" onclick="worldOnclick()">Trang chủ</button>
                     <button class="btn btn-nav" onclick="friendOnclick()">Bạn bè</button>
+                    <button class="btn btn-nav" onclick="worldOnclick()">Thế giới</button>
                     <button class="btn btn-nav" onclick="groupOnclick()">Hội nhóm</button>
                     <button class="btn btn-nav" onclick="messagesOnclick()">Trò chuyện</button>
                     <button class="btn btn-nav" onclick="profileOnclick()">Hồ sơ</button>
@@ -127,17 +127,7 @@
     <div class="jumbotron row content-box">
         <div class="col-md-3">
             <div id="leftside" class="side">
-                <ul class="action-list">
-                    <li>action</li>
-                    <li>action</li>
-                    <li>action</li>
-                    <li>action</li>
-                    <li>action</li>
-                    <li>action</li>
-                    <li>action</li>
-                    <li>action</li>
-                    <li>action</li>
-                </ul>
+                
             </div>
         </div>
         <div class=" col-md-6" >
@@ -159,6 +149,29 @@
             </div>
         </div>
 
+    </div>
+
+    <div id="postmodal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Tạo bài viết<h4>
+                   
+                </div>
+                <div class="modal-body form-group">
+                    <label for="post-content">Nội dung:</label>
+                    <textarea class="form-control" rows="10" id="post-content"></textarea>
+                    <label for="post-img">Chọn ảnh</label>
+                    <input type="file" id="post-img">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn" >Đăng</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        
+        </div>
     </div>
 </body>
 </html>
