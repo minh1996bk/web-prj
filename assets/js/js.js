@@ -1,26 +1,26 @@
 
-function userinfoHtm() {
+function userinfoHtm(user) {
     return `
     <div id="profile-panel" class="modal-body form-group">
 
         <label for="usr-name-input">Họ và tên:</label>
-        <input class="form-control" id="usr-name-input">
+        <input class="form-control" id="usr-name-input" value="${user.name || ''}">
         <label for="usr-phone-input">Số điện thoại:</label>
-        <input class="form-control" id="usr-phone-input">
+        <input class="form-control" id="usr-phone-input" value="${user.phone || ''}">
         <label for="usr-email-input">Email:</label>
-        <input class="form-control" id="usr-email-input">
+        <input class="form-control" id="usr-email-input" value="${user.email || ''}">
         <label for="usr-dob-input">Ngày sinh:</label>
-        <input type="date" class="form-control" id="usr-dob-input">
+        <input type="date" class="form-control" id="usr-dob-input" value="${user.dob || ''}">
         <label for="usr-addr-input">Địa chỉ</label>
-        <input class="form-control" id="usr-addr-input">
+        <input class="form-control" id="usr-addr-input" value="${user.address || ''}">
         <label for="usr-nativeland-input">Quê quán:</label>
-        <input class="form-control" id="usr-nativeland-input">
+        <input class="form-control" id="usr-nativeland-input" value="${user.nativeland || ''}">
         <label for="usr-highschool-input">Trường cấp 3</label>
-        <input class="form-control" id="usr-highschool-input">
+        <input class="form-control" id="usr-highschool-input" value="${user.highschool || ''}">
         <label for="usr-university-input">Trường đại học:</label>
-        <input class="form-control" id="usr-university-input">
+        <input class="form-control" id="usr-university-input" value="${user.university || ''}">
         <label for="usr-corp-input">Công ty:</label>
-        <input class="form-control" id="usr-corp-input">
+        <input class="form-control" id="usr-corp-input" value="${user.corp || ''}">
         <button onclick="profileOnUpdate()" class="btn">Cập nhật</button>
     
     </div>
@@ -98,6 +98,14 @@ function aPostHtm() {
         </div>
     </div>
     `
+}
+
+function supportsPageHtm(data) {
+    return `
+    <h4>Contact for supports: </h4>
+    <p>Phone: ${data.contactPhone}</p>
+    <p>Email: ${data.contactMail}</p>
+    `;
 }
 
 function chatHtml() {
@@ -200,9 +208,14 @@ function leftSideProfileHtm() {
     return ``;
 }
 
-function profileOnclick() {
-    
-    let htm = userinfoHtm();
+async function profileOnclick() {
+    let rep = await $.get('/account');
+    if (!rep) return error500();
+    if (!rep.success) {
+        return showReport(rep.msg);
+    };
+
+    let htm = userinfoHtm(rep.account);
     let leftHtm = leftSideProfileHtm();
 
     let mainView = $("#view-screen");
@@ -221,7 +234,7 @@ function groupOnclick() {
     mainView.append(htm);
 }
 
-function friendOnclick() {
+async function friendOnclick() {
     let htm = aPostHtm();
     htm += aPostHtm();
     let mainView = $("#view-screen");
@@ -229,22 +242,123 @@ function friendOnclick() {
     mainView.append(htm);
 }
 
+async function gameOnclick() {
+    let rep = await $.get('/account');
+    if (!rep) return error500();
+    if (!rep.success) {
+        return showReport(rep.msg);
+    };
 
-function profileOnUpdate() {
+    let htm = userinfoHtm(rep.account);
+    let leftHtm = leftSideProfileHtm();
+
+    let mainView = $("#view-screen");
+    mainView.empty();
+    mainView.append(htm);
+
+    let leftside = $("#leftside");
+    leftside.empty();
+    leftside.append(leftHtm);
+}
+
+async function messagesOnclick() {
+    let rep = await $.get('/account');
+    if (!rep) return error500();
+    if (!rep.success) {
+        return showReport(rep.msg);
+    };
+
+    let htm = userinfoHtm(rep.account);
+    let leftHtm = leftSideProfileHtm();
+
+    let mainView = $("#view-screen");
+    mainView.empty();
+    mainView.append(htm);
+
+    let leftside = $("#leftside");
+    leftside.empty();
+    leftside.append(leftHtm);
+}
+
+async function supportsOnclick() {
+    let rep = await $.get('/supports');
+    if (!rep) return error500();
+    if (!rep.success) {
+        return showReport(rep.msg);
+    };
+
+    let htm = supportsPageHtm(rep);
+
+
+    let mainView = $("#view-screen");
+    mainView.empty();
+    mainView.append(htm);
+
+    let leftside = $("#leftside");
+    leftside.empty();
+   
+}
+
+async function settingsOnclick() {
+    let rep = await $.get('/account');
+    if (!rep) return error500();
+    if (!rep.success) {
+        return showReport(rep.msg);
+    };
+
+    let htm = userinfoHtm(rep.account);
+    let leftHtm = leftSideProfileHtm();
+
+    let mainView = $("#view-screen");
+    mainView.empty();
+    mainView.append(htm);
+
+    let leftside = $("#leftside");
+    leftside.empty();
+    leftside.append(leftHtm);
+}
+
+async function worldOnclick() {
+    let rep = await $.get('/account');
+    if (!rep) return error500();
+    if (!rep.success) {
+        return showReport(rep.msg);
+    };
+
+    let htm = userinfoHtm(rep.account);
+    let leftHtm = leftSideProfileHtm();
+
+    let mainView = $("#view-screen");
+    mainView.empty();
+    mainView.append(htm);
+
+    let leftside = $("#leftside");
+    leftside.empty();
+    leftside.append(leftHtm);
+}
+
+async function profileOnUpdate() {
     let profileInfo = {
         name: $("#usr-name-input").val(),
         phone: $("#usr-phone-input").val(),
         email: $("#usr-email-input").val(),
         dob: $("#usr-dob-input").val(),
-        addr: $("#usr-addr-input").val(),
+        address: $("#usr-addr-input").val(),
         nativeland: $("#usr-nativeland-input").val(),
         highschool: $("#usr-highschool-input").val(),
         university: $("#usr-university-input").val(),
         corp: $("#usr-corp-input").val(),
 
     }
-    console.log(profileInfo);
 
+    let rep = await $.post('/updateAccount', profileInfo);
+    if (!rep) {
+        error500();
+    } else if (rep.success) {
+        showReport("Cập nhật thông tin thành công");
+    } else {
+        showReport(rep.msg);
+    }
 }
 
 function error500() {
@@ -256,6 +370,13 @@ function error500() {
     mainView.append(htm);
 }
 
+function showReport(rp) {
+    $('#report-content').text(rp);
+    $('#reportmodal').modal('show');
+    setTimeout(() => {
+        $('#reportmodal').modal('hide');
+    }, 1500);
+}
 
 async function doLogin() {
     let account = {
@@ -352,9 +473,3 @@ function hideDropdown() {
     $("#typehead-dropdown").hide();
 }
 
-function chatOnclick() {
-    let htm = chatHtml();
-    let mainView = $("#view-screen");
-    mainView.empty();
-    mainView.append(htm);
-}

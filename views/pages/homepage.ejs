@@ -77,6 +77,23 @@
                 </div>
                 <!-- giao dien modal cho phan sign in -->
             </div>
+            <!-- giao dien modal cho phan sign in -->
+            <div id="reportmodal" class="modal fade" role="dialog">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            </div>
+                            <div class="modal-body form-group">
+                                    <h3 id="report-content"></h3>
+                            </div>
+                            <div class="modal-footer">
+                            </div>
+                        </div>
+                    
+                    </div>
+                </div>
+
         </div>
 
        <div class="jumbotron row search-menu" id="topnav" >
@@ -92,14 +109,14 @@
             </div>
             <div class="col-md-7">
                 <div id="menu-head">
-                    <button class="btn btn-nav">Game</button>
-                    <button class="btn btn-nav">Thế giới</button>
+                    <button class="btn btn-nav" onclick="gameOnclick()">Game</button>
+                    <button class="btn btn-nav" onclick="worldOnclick()">Thế giới</button>
                     <button class="btn btn-nav" onclick="friendOnclick()">Bạn bè</button>
                     <button class="btn btn-nav" onclick="groupOnclick()">Hội nhóm</button>
-                    <button class="btn btn-nav" onclick="chatOnclick()">Trò chuyện</button>
+                    <button class="btn btn-nav" onclick="messagesOnclick()">Trò chuyện</button>
                     <button class="btn btn-nav" onclick="profileOnclick()">Hồ sơ</button>
-                    <button class="btn btn-nav" >Cài đặt</button>
-                    <button class="btn btn-nav">Hỗ trợ</button>
+                    <button class="btn btn-nav" onclick="settingsOnclick()">Cài đặt</button>
+                    <button class="btn btn-nav" onclick="supportsOnclick()">Hỗ trợ</button>
                 </div>
             </div>
         </div>
