@@ -1,4 +1,6 @@
 
+friendOnclick();
+
 function userinfoHtm(user) {
     return `
     <div id="profile-panel" class="modal-body form-group">
