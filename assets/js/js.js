@@ -51,6 +51,7 @@ function groupHtm() {
     `;
 }
 
+
 function aPostHtm() {
     return `
     <div class="well post-box rounded" style="background-color: white;">
@@ -206,13 +207,44 @@ function chatHtml() {
 
 
 function leftSideProfileHtm() {
-    return ``;
+    return `
+    <div class="list-group">
+        <button type="button" class="list-group-item list-group-item-action" onclick="showCreatePostModal()">blah blah</button>
+        <button type="button" class="list-group-item list-group-item-action" onclick="showCreatePostModal()">blah blah</button>
+        <button type="button" class="list-group-item list-group-item-action" onclick="showCreatePostModal()">blah blah</button>
+        <button type="button" class="list-group-item list-group-item-action" onclick="showCreatePostModal()">blah blah</button>
+        <button type="button" class="list-group-item list-group-item-action" onclick="showCreatePostModal()">blah blah</button>
+    </div>
+    `;
 }
 
 function leftSidePostHtm() {
     return `
-        <button class="btn" onclick="showCreatePostModal()">Tạo bài mới</button>
+    <div class="list-group">
+        <button type="button" class="list-group-item list-group-item-action" onclick="showCreatePostModal()">Tạo bài mới</button>
+    </div>
     `;
+}
+
+function peopleModalHtm() {
+    return `
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Tạo bài viết<h4>
+                
+            </div>
+            <div class="modal-body form-group">
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn" onclick="addFriend()">Kết bạn</button>
+            </div>
+        </div>
+    </div>
+    
+    `
 }
 
 async function profileOnclick() {
@@ -483,9 +515,9 @@ function showSearchHistory() {
     let dropdown = $("#typehead-dropdown");
     let htm = `
     <ul class="dropdown">
-        <li class="search-element">Nguyen Dinh Minh</li>
-        <li class="search-element">ha noi</li>
-        <li class="search-element">090 392 402</li>
+        <li class="search-element" onclick="showPeopleModal()">Nguyen Dinh Minh</li>
+        <li class="search-element" >ha noi</li>
+        <li class="search-element" >090 392 402</li>
     </ul>
     `;
     dropdown.empty();
@@ -493,8 +525,19 @@ function showSearchHistory() {
     dropdown.show();
 }
 
-function hideDropdown() {
+
+
+function showPeopleModal() {
+    let modal = peopleModalHtm();
+    let peopleModal = $('#peopleModal');
+    peopleModal.empty();
+    peopleModal.append(modal);
+    peopleModal.modal("show");
     $("#typehead-dropdown").empty();
     $("#typehead-dropdown").hide();
 }
 
+function hideDropdown() {
+    $("#typehead-dropdown").empty();
+    $("#typehead-dropdown").hide();
+}
