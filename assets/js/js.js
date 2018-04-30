@@ -103,8 +103,9 @@ function aPostHtm() {
 function supportsPageHtm(data) {
     return `
     <h4>Contact for supports: </h4>
-    <p>Phone: ${data.contactPhone}</p>
-    <p>Email: ${data.contactMail}</p>
+    <p>Phone: ${data.phone || "No data"}</p>
+    <p>Email: ${data.email || "No data"}</p>
+    <p>Email: ${data.address || "No data"}</p>
     `;
 }
 
@@ -287,7 +288,7 @@ async function supportsOnclick() {
         return showReport(rep.msg);
     };
 
-    let htm = supportsPageHtm(rep);
+    let htm = supportsPageHtm(rep.supports);
 
 
     let mainView = $("#view-screen");
