@@ -16,100 +16,100 @@
     <script src="js/js.js"></script>
 </head>
 <body>
-    
-    <div class="jumbotron row">
-        <div id="logocomponent" class="col-md-9">
-            <div style="position: fixed;width: 75%;height:44px;">
+    <div id="head">
+        <div class="jumbotron row banner">
+            <div id="logocomponent" class="col-md-9">
                 <p>Enjoy Game</p>
             </div>
-        </div>
-        <div id="logincomponent" class="col-md-3">
-            <div style="position: fixed;height:44px;">
-                <%if (typeof isLogIned != 'undefined' && isLogIned) {%>
-                    <button onclick="doLogout()">Đăng xuất</button>
-                <%} else {%>
-                    <button data-toggle="modal" data-target="#loginmodal">Đăng nhập</button>
-                    <button data-toggle="modal" data-target="#signinmodal">Đăng ký</button>
-                <%}%>
-
-            </div>
-            <!-- giao dien modal cho phan login -->
-            <div id="signinmodal" class="modal fade" role="dialog">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal">&times;</button>
-                            <h4 class="modal-title">Tạo tài khoản mới</h4>
-                            <h5 id="registererror"></h5>
-                        </div>
-                        <div class="modal-body form-group">
-                                <label for="usersignin">Tên tài khoản:</label>
-                                <input placeholder="Nhập tài khoản..." class="form-control" id="usernamesignin">
-                                <label for="pwdsignin">Mât khẩu:</label>
-                                <input type="password" class="form-control" id="pwdsignin">
-                                <label for="pwdrepeatsignin">Nhập lại mât khẩu:</label>
-                                <input type="password" class="form-control" id="pwdrepeatsignin">
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn" onclick="doSignin()">Đăng ký</button>
-                            <button type="button" class="btn btn-default" data-dismiss="modal">Trở về</button>
+            <div id="logincomponent" class="col-md-3">
+                <div id="login-logout">
+                    <%if (typeof isLogIned != 'undefined' && isLogIned) {%>
+                        <button onclick="doLogout()">Đăng xuất</button>
+                    <%} else {%>
+                        <button data-toggle="modal" data-target="#loginmodal">Đăng nhập</button>
+                        <button data-toggle="modal" data-target="#signinmodal">Đăng ký</button>
+                    <%}%>
+                </div>
+                <!-- giao dien modal cho phan login -->
+                <div id="signinmodal" class="modal fade" role="dialog">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                <h4 class="modal-title">Tạo tài khoản mới</h4>
+                            </div>
+                            <div class="modal-body form-group">
+                                    <label for="usersignin">Tên tài khoản:</label>
+                                    <input placeholder="Nhập tài khoản..." class="form-control" id="usernamesignin">
+                                    <label for="pwdsignin">Mât khẩu:</label>
+                                    <input type="password" class="form-control" id="pwdsignin">
+                                    <label for="pwdrepeatsignin">Nhập lại mât khẩu:</label>
+                                    <input type="password" class="form-control" id="pwdrepeatsignin">
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn" onclick="doSignin()">Đăng ký</button>
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Trở về</button>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div id="loginmodal" class="modal fade" role="dialog">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal">&times;</button>
-                            <h4 class="modal-title">Đăng nhập tài khoản<h4>
-                            <h5 id="loginerror"></h5>
+                <div id="loginmodal" class="modal fade" role="dialog">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                <h4 class="modal-title">Đăng nhập tài khoản<h4>
+                                <h5 id="loginerror"></h5>
+                            </div>
+                            <div class="modal-body form-group">
+                                    <label for="usrlogin">Tên tài khoản:</label>
+                                    <input placeholder="Nhập tài khoản..." class="form-control" id="usernamelogin">
+                                    <label for="pwdlogin">Mât khẩu:</label>
+                                    <input type="password" class="form-control" id="pwdlogin">
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn" onclick="doLogin()">Đăng nhập</button>
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                            </div>
                         </div>
-                        <div class="modal-body form-group">
-                                <label for="usrlogin">Tên tài khoản:</label>
-                                <input placeholder="Nhập tài khoản..." class="form-control" id="usernamelogin">
-                                <label for="pwdlogin">Mât khẩu:</label>
-                                <input type="password" class="form-control" id="pwdlogin">
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn" onclick="doLogin()">Đăng nhập</button>
-                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                        </div>
-                    </div>
-                
-                </div>
-            </div>
-            <!-- giao dien modal cho phan sign in -->
-            
-
-        </div>
-    </div>
-    <div class="jumbotron row" id="topnav" >
-        <div class="col-md-5">
-            <div style="position: fixed;margin-left: 50px;width: 600px;border:1px solid grey;border-radius: 5px;z-index: 10000;">
-                <input id="typehead" oninput="autoComplete()" onfocus="showSearchHistory()" onfocusout="hideDropdown()" placeholder="Tìm kiếm" style="width:450px;padding:5px; border:none;border-radius: 5px 0px 0px 5px;">
-                <button id="btnSearch" class="btn btn-nav" style="padding-bottom: 10px;margin-top:0px;"><i class="glyphicon glyphicon-search">Tìm kiêm</i></button>
-                <div id="typehead-dropdown" style="z-index: 10000;">
                     
+                    </div>
+                </div>
+                <!-- giao dien modal cho phan sign in -->
+            </div>
+        </div>
+
+
+
+        <div class="jumbotron row search-menu" id="topnav" >
+            <div class="col-md-5">
+                <div id="search-box">
+                    <input id="typehead" oninput="autoComplete()" onfocus="showSearchHistory()" onfocusout="hideDropdown()" placeholder="Tìm kiếm">
+                    <button id="btnSearch" class="btn btn-nav">
+                    <i class="glyphicon glyphicon-search">Tìm kiêm</i></button>
+                    <div id="typehead-dropdown">
+                        
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-7">
+                <div id="menu-head">
+                    <button class="btn btn-nav">Game</button>
+                    <button class="btn btn-nav">Thế giới</button>
+                    <button class="btn btn-nav" onclick="friendOnclick()">Bạn bè</button>
+                    <button class="btn btn-nav" onclick="groupOnclick()">Hội nhóm</button>
+                    <button class="btn btn-nav" onclick="chatOnclick()">Trò chuyện</button>
+                    <button class="btn btn-nav" onclick="profileOnclick()">Hồ sơ</button>
+                    <button class="btn btn-nav" >Cài đặt</button>
+                    <button class="btn btn-nav">Hỗ trợ</button>
                 </div>
             </div>
         </div>
-        <div class="col-md-7">
-            <div style="position:fixed;z-index: 2000;">
-                <button class="btn btn-nav">Game</button>
-                <button class="btn btn-nav">Thế giới</button>
-                <button class="btn btn-nav" onclick="friendOnclick()">Bạn bè</button>
-                <button class="btn btn-nav" onclick="groupOnclick()">Hội nhóm</button>
-                <button class="btn btn-nav">Trò chuyện</button>
-                <button class="btn btn-nav" onclick="profileOnclick()">Hồ sơ</button>
-                <button class="btn btn-nav" >Cài đặt</button>
-                <button class="btn btn-nav">Hỗ trợ</button>
-            </div>
-        </div>
     </div>
-    <div class="jumbotron row">
+
+    <div class="jumbotron row content-box">
         <div class="col-md-3">
-            <div id="leftside" style="position: fixed; width:25%;" class="side">
+            <div id="leftside" class="side">
                 <ul class="action-list">
                     <li>action</li>
                     <li>action</li>
@@ -132,7 +132,7 @@
             </div>
         </div>
         <div class="col-md-3">
-            <div id="rightside" style="position: fixed;width:25%" class="side">
+            <div id="rightside" class="side">
                 <div>
                     <div><p>Nguyen Van A</p></div>
                     <div><p>Nguyen Van A</p></div>

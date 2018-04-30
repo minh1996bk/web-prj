@@ -100,6 +100,14 @@ function aPostHtm() {
     `
 }
 
+function chatHtml() {
+    return `
+    <div id="chat-box" >
+        blah
+    </div>
+    `
+}
+
 
 function leftSideProfileHtm() {
     return ``;
@@ -126,7 +134,7 @@ function groupOnclick() {
     mainView.append(htm);
 }
 
-    function friendOnclick() {
+function friendOnclick() {
     let htm = aPostHtm();
     htm += aPostHtm();
     let mainView = $("#view-screen");
@@ -255,4 +263,11 @@ function showSearchHistory() {
 function hideDropdown() {
     $("#typehead-dropdown").empty();
     $("#typehead-dropdown").hide();
+}
+
+function chatOnclick() {
+    let htm = chatHtml();
+    let mainView = $("#view-screen");
+    mainView.empty();
+    mainView.append(htm);
 }
