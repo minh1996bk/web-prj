@@ -300,9 +300,8 @@ async function supportsOnclick() {
     if (!rep.success) {
         return showReport(rep.msg);
     };
-
+    
     let htm = supportsPageHtm(rep.supports);
-
 
     let mainView = $("#view-screen");
     mainView.empty();
@@ -310,7 +309,6 @@ async function supportsOnclick() {
 
     let leftside = $("#leftside");
     leftside.empty();
-   
 }
 
 async function settingsOnclick() {
