@@ -13,9 +13,21 @@ module.exports = {
       highschool: 'string',
       university: 'string',
       corp: 'string',
+      posts: {
+          collection: 'post',
+          via: 'owner'
+      },
+      likedposts: {
+          collection: 'post',
+          via: 'likers'
+      },
+      sharedposts: {
+          collection: 'post',
+          via: 'sharers'
+      },
       roles: {
-          type: 'string',
-          columnType: 'array'
+          collection: 'role',
+          via: 'owners'
       }
     },
     createAccount: async function(account) {
