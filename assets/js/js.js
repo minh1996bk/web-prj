@@ -211,11 +211,58 @@ function chatHtml() {
 function leftSideProfileHtm() {
     return `
     <div class="list-group">
-        <button type="button" class="list-group-item list-group-item-action" onclick="showCreatePostModal()">blah blah</button>
-        <button type="button" class="list-group-item list-group-item-action" onclick="showCreatePostModal()">blah blah</button>
-        <button type="button" class="list-group-item list-group-item-action" onclick="showCreatePostModal()">blah blah</button>
-        <button type="button" class="list-group-item list-group-item-action" onclick="showCreatePostModal()">blah blah</button>
-        <button type="button" class="list-group-item list-group-item-action" onclick="showCreatePostModal()">blah blah</button>
+        <button type="button" class="list-group-item list-group-item-action" onclick="showCreatePostModal()">Giới thiệu</button>
+        <button type="button" class="list-group-item list-group-item-action" onclick="showCreatePostModal()">Bạn bè</button>
+    </div>
+    `;
+}
+
+function leftSideSettingHtm() {
+    return `
+    <div class="list-group">
+        <button type="button" class="list-group-item list-group-item-action" onclick="showCreatePostModal()">Mật khẩu</button>
+        <button type="button" class="list-group-item list-group-item-action" onclick="showCreatePostModal()">Vô hiệu hóa tài khoản</button>
+    </div>
+    `;
+}
+
+function leftSideGroupHtm() {
+    return `
+    <div class="list-group">
+        <button type="button" class="list-group-item list-group-item-action" onclick="showCreatePostModal()">Nhóm củ đậu</button>
+        <button type="button" class="list-group-item list-group-item-action" onclick="showCreatePostModal()">Hội yêu động vật</button>
+        <button type="button" class="list-group-item list-group-item-action" onclick="showCreatePostModal()">Hội blah blah</button>
+    </div>
+    `;
+}
+
+function leftSideWorldHtm() {
+    return `
+    <div class="list-group">
+        <button type="button" class="list-group-item list-group-item-action" onclick="showCreatePostModal()">Tạo bài đăng mới</button>
+        <button type="button" class="list-group-item list-group-item-action" onclick="showCreatePostModal()">Người nổi tiếng</button>
+        <button type="button" class="list-group-item list-group-item-action" onclick="showCreatePostModal()">Đã thích</button>
+        <button type="button" class="list-group-item list-group-item-action" onclick="showCreatePostModal()">Đang bình luận</button>
+    </div>
+    `;
+}
+
+function leftSideMessageHtm() {
+    return `
+    <div class="list-group">
+        <button type="button" class="list-group-item list-group-item-action" onclick="showCreatePostModal()">Nguyễn y vân</button>
+        <button type="button" class="list-group-item list-group-item-action" onclick="showCreatePostModal()">Nguyễn Blah</button>
+        <button type="button" class="list-group-item list-group-item-action" onclick="showCreatePostModal()">Nguyễn Bloh</button>
+        <button type="button" class="list-group-item list-group-item-action" onclick="showCreatePostModal()">Nguyễn Bleh</button>
+    </div>
+    `;
+}
+
+function leftSideSupportHtm() {
+    return `
+    <div class="list-group">
+        <button type="button" class="list-group-item list-group-item-action" onclick="showCreatePostModal()">Chính sách</button>
+        <button type="button" class="list-group-item list-group-item-action" onclick="showCreatePostModal()">Thông tin liên hệ</button>
     </div>
     `;
 }
@@ -273,6 +320,11 @@ function groupOnclick() {
     let mainView = $("#view-screen");
     mainView.empty();
     mainView.append(htm);
+
+    let leftHtm = leftSideGroupHtm();
+    let leftside = $("#leftside");
+    leftside.empty();
+    leftside.append(leftHtm);
 }
 
 async function friendOnclick() {
@@ -322,7 +374,7 @@ async function messagesOnclick() {
     };
 
     let htm = userinfoHtm(rep.account);
-    let leftHtm = leftSideProfileHtm();
+    let leftHtm = leftSideMessageHtm();
 
     let mainView = $("#view-screen");
     mainView.empty();
@@ -346,8 +398,10 @@ async function supportsOnclick() {
     mainView.empty();
     mainView.append(htm);
 
+    let leftHtm = leftSideSupportHtm();
     let leftside = $("#leftside");
     leftside.empty();
+    leftside.append(leftHtm);
 }
 
 async function settingsOnclick() {
@@ -358,7 +412,7 @@ async function settingsOnclick() {
     };
 
     let htm = userinfoHtm(rep.account);
-    let leftHtm = leftSideProfileHtm();
+    let leftHtm = leftSideSettingHtm();
 
     let mainView = $("#view-screen");
     mainView.empty();
@@ -377,7 +431,7 @@ async function worldOnclick() {
     };
 
     let htm = userinfoHtm(rep.account);
-    let leftHtm = leftSideProfileHtm();
+    let leftHtm = leftSideWorldHtm();
 
     let mainView = $("#view-screen");
     mainView.empty();
