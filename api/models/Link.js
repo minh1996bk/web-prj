@@ -1,19 +1,21 @@
+
 module.exports = {
     attributes: {
-        owner: {
-            model: 'account',
-            unique: true
-        },
-        friends: {
-            collection: 'account',
-            via: 'owner'
-        }
+        owner: 'number',
+        friend: 'number'
     },
+    
+    
     addToFriends: async function(owner, friendId) {
-        let link = await Link.findOne({'owner': owner});
-        console.log(link);
-        await Link.addToCollection(link.id, 'friends')
-        .members(friendId);
+        
+        let query = `
+            insert into link
+            (createAt, updateAt, owner, friend) values ($1, $2, $3, $4);
+        `
+        let ms = new Date().getMilliseconds();
+        let results = await sails.sendNativeQuery(query, [ms, ms, owner, friendId]);
+        console.log("ket qua cua them ban ", results);
+
     },
     getFriendIds: async function(owner) {
         let link = await Link.findOne({'owner': owner})

@@ -13,13 +13,7 @@ module.exports = {
       highschool: 'string',
       university: 'string',
       corp: 'string',
-      link: {
-          collection: 'link',
-          via: 'owner'
-      },
-      owner: {
-          model: 'link'
-      },
+    
       posts: {
           collection: 'post',
           via: 'owner'
