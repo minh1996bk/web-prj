@@ -20,5 +20,18 @@ module.exports = {
         group: {
             model: 'group'
         }
+    },
+
+    getPostsIn: async function(userIds) {
+        return await Post.find({
+            where: {
+                owner: {
+                    'in' : userIds
+                }
+            },
+            select: ['createdAt', 'id', 'text', 'img', 'owner']
+        })
+        .sort([{createdAt: 'DESC'}])
+        .populate('owner');
     }
 }

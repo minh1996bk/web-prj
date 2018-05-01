@@ -43,7 +43,7 @@ module.exports.routes = {
   'post /post' : 'PostController.createPost',
   'post /createLink' : 'LinkController.createLink',
   'post /updateLink' : 'LinkController.updateLink',
-
+  'get /user/:id' : 'AccountController.getUser',
   /***************************************************************************
   *                                                                          *
   * More custom routes here...                                               *

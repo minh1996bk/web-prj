@@ -19,9 +19,13 @@ module.exports = {
 
     },
     getPosts: async function(req, res) {
-        
-        res.json({
+        let userIds = await Link.getFriendIds(req.session.userId);
+        userIds.push(req.session.userId);
+        let posts = await Post.getPostsIn(userIds);
+      
+        return res.json({
             success: true,
+            posts: posts
         })
     }
 }

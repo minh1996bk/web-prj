@@ -13,7 +13,7 @@ module.exports = {
       highschool: 'string',
       university: 'string',
       corp: 'string',
-    
+      avatar: 'string',
       posts: {
           collection: 'post',
           via: 'owner'
@@ -66,5 +66,7 @@ module.exports = {
         if (!check) return false;
         return rep.id;
         
-    }
+    },
+
+   
 }

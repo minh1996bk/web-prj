@@ -54,7 +54,7 @@ function groupHtm() {
 }
 
 
-function aPostHtm() {
+function aPostHtm(post) {
     return `
     <div class="well post-box rounded" style="background-color: white;">
         <div class="post-box-content rounded">
@@ -62,8 +62,8 @@ function aPostHtm() {
                 <img src="/images/user-icon.jpg" class="rounded-circle icon-user" alt="">
 
                 <div class="col-md-6">
-                    <p>Nguyen Dinh Minh</p>
-                    <h6>20-02-2018</h6>
+                    <p onclick="showPeopleModal(${post.owner.id})" class='user-name'>${post.owner.name}</p>
+                    <h6>${renderTime(post.createdAt)}</h6>
                 </div>
             </div>
 
@@ -72,7 +72,7 @@ function aPostHtm() {
                     <p>Day la anh</p>
                 </div>
                 <div>
-                    <p>Day la noi dung</p>
+                    <p>${post.text}</p>
                 </div>
             </div>
             <hr>
@@ -228,20 +228,20 @@ function leftSidePostHtm() {
     `;
 }
 
-function peopleModalHtm() {
+function peopleModalHtm(user) {
     return `
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h4 class="modal-title">Tạo bài viết<h4>
+                <h4 class="modal-title">Trang cá nhân<h4>
                 
             </div>
             <div class="modal-body form-group">
-
+                <p>${user.name}</p>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn" onclick="addFriend()">Kết bạn</button>
+                <button type="button" class="btn" onclick="addFriend(${user.id})">Kết bạn</button>
             </div>
         </div>
     </div>
@@ -277,10 +277,15 @@ function groupOnclick() {
 
 async function friendOnclick() {
     let rep = await $.get('/posts');
+
     if (!rep) return error500();
     if (!rep.success) return showReport(rep.msg);
-    let htm = aPostHtm();
-    htm += aPostHtm();
+    let posts = rep.posts;
+    let htm;
+    posts.forEach(post => {
+        htm += aPostHtm(post);
+    })
+    
     let mainView = $("#view-screen");
     mainView.empty();
     mainView.append(htm);
@@ -444,6 +449,8 @@ async function doPost() {
         hideCreatePostModal();
     }
     showReport(rep.msg);
+    friendOnclick();
+
 }
 
 async function doLogin() {
@@ -538,8 +545,9 @@ function showSearchHistory() {
 
 
 
-function showPeopleModal() {
-    let modal = peopleModalHtm();
+async function showPeopleModal(id) {
+    let rep = await $.get(`/user/${id}`);
+    let modal = peopleModalHtm(rep.user);
     let peopleModal = $('#peopleModal');
     peopleModal.empty();
     peopleModal.append(modal);
@@ -551,4 +559,17 @@ function showPeopleModal() {
 function hideDropdown() {
     $("#typehead-dropdown").empty();
     $("#typehead-dropdown").hide();
+}
+
+function renderTime(ms) {
+  
+    let _ms = parseInt(ms);
+
+    let time = new Date().getTime() - _ms;
+    if (time < (60 * 60 * 1000)) return Math.round(time / (60 * 1000)) + " phút trước";
+   
+    else if (time < (60 * 60 * 1000)) return Math.round(time / (24 * 60 * 60 * 1000)) + " giờ trước";
+    else {
+        return new Date(time).toLocaleString();
+    }
 }

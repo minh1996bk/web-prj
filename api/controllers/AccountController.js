@@ -60,5 +60,13 @@ module.exports = {
             account: account,
         });
     },
+
+    getUser: async function(req, res) {
+        let user = await Account.findOne({'id': req.params.id});
+        return res.json({
+            success: true,
+            user: user
+        })
+    }
     
 }
