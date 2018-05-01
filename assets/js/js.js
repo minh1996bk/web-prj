@@ -1,6 +1,8 @@
 
 friendOnclick();
-
+$(document).ready(function() {
+    io.socket.on('hello', msg => console.log(msg));
+})
 function userinfoHtm(user) {
     return `
     <div id="profile-panel" class="modal-body form-group">
@@ -28,6 +30,8 @@ function userinfoHtm(user) {
     </div>
     `;
 }
+
+
 
 function groupHtm() {
     return `
@@ -565,6 +569,12 @@ function logSmt() {
     console.log("ok")
 }
 
+function userFindHtm(user) {
+    return `<li class="search-element" onclick="showPeopleModal(${user.id})">${user.name}</li>`
+                
+         
+}
+
 function autoComplete() {
     let typehead = $("#typehead");
     let dropdown = $("#typehead-dropdown");
@@ -572,26 +582,54 @@ function autoComplete() {
     if (typeheadVal === "") {
         return showSearchHistory();
     }
-    let htm = `
-    <ul class="dropdown">
-        <li class="search-element">${typeheadVal}abc</li>
-        <li class="search-element">${typeheadVal} dact</li>
-    </ul>
-    `;
+    // to get data from where search
+    let users = [
+        {
+            id: 1,
+            name: `${typeheadVal}ffsf`,
+            avatar: 'user-icon.jpg',
+        },
+        {
+            id: 2,
+            name: `${typeheadVal}saf asfaf`,
+            avatar: 'user-icon.jpg',
+        }
+    ]
+    // cho api 
+    let htm;
+    htm =  `<ul class='dropdown'>`;
+    users.forEach(user => {
+        htm += userFindHtm(user);
+    })
+    htm +=  `</ul>`
     dropdown.empty();
     dropdown.append(htm);
     dropdown.show();
 }
 
 function showSearchHistory() {
+    //to do get user saved in cookies or somewhere
+    let users = [
+        {
+            id: 1,
+            name: 'Nguyen Dinh Minh',
+            avatar: 'user-icon.jpg',
+        },
+        {
+            id: 2,
+            name: `saf asfaf`,
+            avatar: 'user-icon.jpg',
+        }
+    ]
+
     let dropdown = $("#typehead-dropdown");
-    let htm = `
-    <ul class="dropdown">
-        <li class="search-element" onclick="showPeopleModal()">Nguyen Dinh Minh</li>
-        <li class="search-element" >ha noi</li>
-        <li class="search-element" >090 392 402</li>
-    </ul>
-    `;
+
+    let htm =  `<ul class='dropdown'>`;
+    users.forEach(user => {
+        htm += userFindHtm(user);
+    })
+    htm +=  `</ul>`;
+
     dropdown.empty();
     dropdown.append(htm);
     dropdown.show();
