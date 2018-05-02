@@ -1,30 +1,3 @@
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 async function profileOnclick() {
     let rep = await $.get('/account');
     if (!rep) return error500();
@@ -307,7 +280,8 @@ function autoComplete() {
     let dropdown = $("#typehead-dropdown");
     let typeheadVal = typehead.val();
     if (typeheadVal === "") {
-        return showSearchHistory();
+        return;
+        // return showSearchHistory();
     }
     // to get data from where search
     io.socket.get('/findUser',{
