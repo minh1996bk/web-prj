@@ -81,6 +81,14 @@ function leftSideMessageHtm(talks) {
         htm += `<button type="button" class="list-group-item list-group-item-action" onclick="getTalk(${talk.id})">${talk.name}</button>`
     })
     return `
+        <div id="search-chat-room-box" class="list-group" >
+            <input id="search-chat-room" class="list-group-item list-group-item-action" oninput="autoComplete()" placeholder="Nhóm chat ....">
+            <div id="search-chat-room-dropdown">
+        
+            </div>
+        </div>
+        <br>
+
         <div class="list-group">
             ${htm}
         </div>`;
