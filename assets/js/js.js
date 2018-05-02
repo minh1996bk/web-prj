@@ -126,7 +126,7 @@ async function settingsOnclick() {
         return showReport(rep.msg);
     };
 
-    let htm = userinfoHtm(rep.account);
+    let htm = changePasswordHtm();
     let leftHtm = leftSideSettingHtm();
 
     let mainView = $("#view-screen");
@@ -376,3 +376,18 @@ function updateAvatar() {
     document.getElementById('my_file').click();
 };
 
+function showChangePassword() {
+    htm = changePasswordHtm();
+
+    let mainView = $("#view-screen");
+    mainView.empty();
+    mainView.append(htm);
+};
+
+function showDeactive() {
+    htm = deactiveHtm();
+
+    let mainView = $("#view-screen");
+    mainView.empty();
+    mainView.append(htm);
+}
