@@ -31,3 +31,30 @@ function showReport(rp) {
         $('#reportmodal').modal('hide');
     }, 1500);
 }
+
+function createGroupModal() {
+    return `
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Tao nhóm mới<h4>
+                
+            </div>
+            <div class="modal-body form-group">
+                <label >Tên nhóm mới:</label>
+                <input placeholder="Nhập tên nhóm..." class="form-control">
+                <br><br>
+                <label >Trạng thái:</label>
+                <input type="radio" name="status" value="public"> Công khai
+                <input type="radio" name="status" value="private"> Bí mật<br>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn" onclick="">Tạo nhóm</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Trở về</button>
+            </div>
+        </div>
+    </div>
+    
+    `
+}
