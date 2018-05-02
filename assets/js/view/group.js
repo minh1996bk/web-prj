@@ -26,7 +26,9 @@ function groupHtm() {
 function leftSideGroupHtm() {
     return `
     <div class="list-group">
-        <button type="button" class="list-group-item list-group-item-action" onclick="showCreatePostModal()">Tạo nhóm mới</button>
+        <button type="button" class="list-group-item list-group-item-action" onclick="showCreateGroupModal()">Tạo nhóm mới</button>
+    </div>
+    <div class="list-group">
         <button type="button" class="list-group-item list-group-item-action" onclick="showCreatePostModal()">Hội yêu động vật</button>
         <button type="button" class="list-group-item list-group-item-action" onclick="showCreatePostModal()">Hội blah blah</button>
     </div>
