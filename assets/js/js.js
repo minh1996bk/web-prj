@@ -372,3 +372,7 @@ function deleteFriend() {
     
 }
 
+function updateAvatar() {
+    document.getElementById('my_file').click();
+};
+

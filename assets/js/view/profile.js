@@ -33,7 +33,8 @@ function leftSideProfileHtm() {
     return `
     <div class="avatar-profile">
         <img src="https://kenh14cdn.com/2017/-1488451960776.jpg" class="img-rounded " alt="Cinque Terre"> 
-        <button>cập nhật</button>
+        <input type="button" id="get_file" value="Update" onclick="updateAvatar()">
+        <input type="file" id="my_file">
     </div>
     <div class="list-group">
         <button type="button" class="list-group-item list-group-item-action" onclick="showCreatePostModal()">Thông tin cá nhân</button>
