@@ -29,12 +29,12 @@ function userinfoHtm(user) {
     `;
 }
 
-function leftSideProfileHtm() {
+function leftSideProfileHtm(avatar) {
     return `
     <div class="avatar-profile">
-        <img src="https://kenh14cdn.com/2017/-1488451960776.jpg" class="img-rounded " alt="Cinque Terre"> 
-        <input type="button" id="get_file" value="Update" onclick="updateAvatar()">
-        <input type="file" id="my_file">
+        <img id="img_avatar" src="${avatar}" class="img-rounded " alt="Cinque Terre"> 
+        <input type="button" id="get_file" value="Update" onclick="showSelectFile()">
+        <input type="file" id="my_file" onchange="updateAvatar()">
     </div>
     <div class="list-group">
         <button type="button" class="list-group-item list-group-item-action" onclick="showCreatePostModal()">Thông tin cá nhân</button>

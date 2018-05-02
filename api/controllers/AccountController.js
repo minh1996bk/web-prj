@@ -2,7 +2,8 @@ module.exports = {
     registerAccount: async function doRegister(req, res) {
         await Account.createAccount({
             username: req.body.username,
-            pwd: req.body.pwd
+            pwd: req.body.pwd,
+            
         })
         return res.json({
             success: true,
@@ -47,6 +48,7 @@ module.exports = {
             highschool: req.body.highschool,
             university: req.body.university,
             corp: req.body.corp,
+            avatar: req.body.avatar
         });
 
         return res.json({

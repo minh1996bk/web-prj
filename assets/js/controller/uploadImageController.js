@@ -16,6 +16,7 @@ async function doUploadAndGetUrl(inputId) {
         type: 'post',
         
     });
-    return rep.imageUrl;
+   
+    return 'images/' + JSON.parse(rep).imageUrl;
   
 }

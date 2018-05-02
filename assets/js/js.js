@@ -6,7 +6,8 @@ async function profileOnclick() {
     };
 
     let htm = userinfoHtm(rep.account);
-    let leftHtm = leftSideProfileHtm();
+  
+    let leftHtm = leftSideProfileHtm(rep.account.avatar);
 
     let mainView = $("#view-screen");
     mainView.empty();
@@ -372,7 +373,20 @@ function deleteFriend() {
     
 }
 
-function updateAvatar() {
+function showSelectFile() {
     document.getElementById('my_file').click();
 };
 
+async function updateAvatar() {
+    let url = await doUploadAndGetUrl('my_file');
+    let rep = await $.post('/updateAccount', {
+        avatar: url
+    });
+    if (!rep) {
+        error500();
+    } else if (rep.success) {
+        showReport("Cập nhật thông tin thành công");
+    } else {
+        showReport(rep.msg);
+    }
+}
