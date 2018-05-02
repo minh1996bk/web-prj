@@ -33,5 +33,17 @@ module.exports = {
         })
         .sort([{createdAt: 'DESC'}])
         .populate('owner');
+    },
+    getPostsNotIn: async function(userIds) {
+        return await Post.find({
+            where: {
+                owner: {
+                    'nin' : userIds
+                }
+            },
+            select: ['createdAt', 'id', 'text', 'img', 'owner']
+        })
+        .sort([{createdAt: 'DESC'}])
+        .populate('owner');
     }
 }

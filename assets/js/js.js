@@ -139,22 +139,23 @@ async function settingsOnclick() {
 }
 
 async function worldOnclick() {
-    let rep = await $.get('/account');
+    let rep = await $.get('/publicPosts');
+
     if (!rep) return error500();
-    if (!rep.success) {
-        return showReport(rep.msg);
-    };
-
-    let htm = userinfoHtm(rep.account);
-    let leftHtm = leftSideWorldHtm();
-
+    if (!rep.success) return showReport(rep.msg);
+    let posts = rep.posts;
+    let htm ="";
+    posts.forEach(post => {
+        htm += aPostHtm(post);
+    })
+    
     let mainView = $("#view-screen");
     mainView.empty();
     mainView.append(htm);
-
-    let leftside = $("#leftside");
-    leftside.empty();
-    leftside.append(leftHtm);
+    let leftHtm = leftSidePostHtm();
+    let leftSide = $("#leftside");
+    leftSide.empty();
+    leftSide.append(leftHtm);
 }
 
 async function profileOnUpdate() {

@@ -27,5 +27,15 @@ module.exports = {
             success: true,
             posts: posts
         })
+    },
+    getPublicPosts: async function(req, res) {
+        let userIds = await Link.getFriendIds(req.session.userId);
+        userIds.push(req.session.userId);
+        let posts = await Post.getPostsNotIn(userIds);
+      
+        return res.json({
+            success: true,
+            posts: posts
+        })
     }
 }
