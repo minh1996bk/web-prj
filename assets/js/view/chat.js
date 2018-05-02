@@ -1,5 +1,5 @@
 function chatHtml(messages, host) {
-    let messagesText;
+    let messagesText = "";
     messages.forEach(msg => {
         if (msg.owner.id == host) {
             messagesText += `<div class="row msg_container base_sent">
@@ -79,8 +79,8 @@ function chatHtml(messages, host) {
 }
 
 function leftSideMessageHtm(talks) {
-    let name;
-    let htm;
+    let name = "";
+    let htm = "";
     talks.forEach(talk => {
         htm += `<button type="button" class="list-group-item list-group-item-action" onclick="getTalk(${talk.id})">${talk.name}</button>`
     })

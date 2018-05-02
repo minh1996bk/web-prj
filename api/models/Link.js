@@ -14,7 +14,7 @@ module.exports = {
         `
         let ms = new Date().getTime();
         let results = await sails.sendNativeQuery(query, [ms, ms, owner, friendId]);
-        console.log("ket qua cua them ban ", results);
+
 
     },
     getFriendIds: async function(owner) {

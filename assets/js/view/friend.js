@@ -8,3 +8,13 @@ function userFindHtm(users) {
                 
          
 }
+
+function listFriendHtm(friends) {
+    let htm = "";
+    friends.forEach(fr => {
+        htm += `<button type="button" class="list-group-item list-group-item-action">${fr.name}</button>`;
+    })
+
+    return htm;
+}
+

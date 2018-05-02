@@ -1,30 +1,3 @@
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 async function profileOnclick() {
     let rep = await $.get('/account');
     if (!rep) return error500();
@@ -62,7 +35,7 @@ async function friendOnclick() {
     if (!rep) return error500();
     if (!rep.success) return showReport(rep.msg);
     let posts = rep.posts;
-    let htm;
+    let htm ="";
     posts.forEach(post => {
         htm += aPostHtm(post);
     })
@@ -384,3 +357,4 @@ function renderTime(ms) {
 function deleteFriend() {
     
 }
+

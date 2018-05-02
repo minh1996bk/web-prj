@@ -89,7 +89,18 @@ module.exports = {
             ]
         })
         .limit(10);
-    }
+    },
+
+    getFriends: async function(friendIds) {
+        return await Account.find({
+                where: {
+                    id: {
+                        'in' : friendIds
+                    }
+                },
+                select: ['id', 'name', 'avatar']
+            })
+        }
 
    
 }
