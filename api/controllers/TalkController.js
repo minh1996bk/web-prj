@@ -1,4 +1,21 @@
 module.exports = {
+    createTalk: async function(req, res) {
+        let newTalk = await Talk.create({
+            name: req.body.name,
+        })
+        .fetch();
+        let members = req.body.members;
+        
+        members.push(req.session.userId);
+
+        await Talk.addToCollection(newTalk.id, 'members')
+        .members(members);
+        
+        return res.json({
+            success: true,
+        })
+        
+    },
     getTalks: async function(req, res) {
         return res.json({
             success: true,
