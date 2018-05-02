@@ -68,5 +68,28 @@ module.exports = {
         
     },
 
+    findUser: async function(searchPattern) {
+        return await Account.find({
+            or: [
+                {
+                    name: {
+                        contains: searchPattern
+                    }
+                },
+                {
+                    phone: {
+                        contains: searchPattern
+                    }
+                },
+                {
+                    email: {
+                        contains: searchPattern
+                    }
+                }
+            ]
+        })
+        .limit(10);
+    }
+
    
 }

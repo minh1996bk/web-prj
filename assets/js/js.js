@@ -1,304 +1,29 @@
 
-friendOnclick();
-$(document).ready(function() {
-    io.socket.on('hello', msg => console.log(msg));
-})
-function userinfoHtm(user) {
-    return `
-    <div id="profile-panel" class="modal-body form-group">
-
-        <label for="usr-name-input">Họ và tên:</label>
-        <input class="form-control" id="usr-name-input" value="${user.name || ''}">
-        <label for="usr-phone-input">Số điện thoại:</label>
-        <input class="form-control" id="usr-phone-input" value="${user.phone || ''}">
-        <label for="usr-email-input">Email:</label>
-        <input class="form-control" id="usr-email-input" value="${user.email || ''}">
-        <label for="usr-dob-input">Ngày sinh:</label>
-        <input type="date" class="form-control" id="usr-dob-input" value="${user.dob || ''}">
-        <label for="usr-addr-input">Địa chỉ</label>
-        <input class="form-control" id="usr-addr-input" value="${user.address || ''}">
-        <label for="usr-nativeland-input">Quê quán:</label>
-        <input class="form-control" id="usr-nativeland-input" value="${user.nativeland || ''}">
-        <label for="usr-highschool-input">Trường cấp 3</label>
-        <input class="form-control" id="usr-highschool-input" value="${user.highschool || ''}">
-        <label for="usr-university-input">Trường đại học:</label>
-        <input class="form-control" id="usr-university-input" value="${user.university || ''}">
-        <label for="usr-corp-input">Công ty:</label>
-        <input class="form-control" id="usr-corp-input" value="${user.corp || ''}">
-        <button onclick="profileOnUpdate()" class="btn">Cập nhật</button>
-    
-    </div>
-    `;
-}
 
 
 
-function groupHtm() {
-    return `
-    <div class="usr-group" >
-        <div class="addmin-group" style="border-radius: 5px; background-color: white; padding:10px;">
-            <header>Nhóm bạn quản lý</header>
-            <hr style="border: solid grey 0.5px;">
-            <div class="a-group">
-                <p>Nhóm ACB</p>
-            </div>
-        </div>
-        <div class="member-group" style="border-radius: 5px; background-color: white; padding: 10px;margin-top: 10px;">
-            <header>Nhóm bạn tham gia</header>
-            <hr style="border: solid grey 0.5px;">
-            <div class="a-group">
-                <p>Nhom df</p>
-            </div>
-            <div class="a-group">
-                <p>Nhom cb</p>
-            </div>
-        </div>
-    </div>
-    `;
-}
 
 
-function aPostHtm(post) {
-    return `
-    <div class="well post-box rounded" style="background-color: white;">
-        <div class="post-box-content rounded">
-            <div class="well row" style="flex-wrap: nowrap !important; margin: 0 !important;">
-                <img src="/images/user-icon.jpg" class="rounded-circle icon-user" alt="">
-
-                <div class="col-md-6">
-                    <p onclick="showPeopleModal(${post.owner.id})" class='user-name'>${post.owner.name}</p>
-                    <h6>${renderTime(post.createdAt)}</h6>
-                </div>
-            </div>
-
-            <div class="well" style="margin-top: 10px;">
-                <div>
-                    <p>Day la anh</p>
-                </div>
-                <div>
-                    <p>${post.text}</p>
-                </div>
-            </div>
-            <hr>
-            <div class="row">
-                <button class="col-md-4 btn btn-post"><i class="glyphicon glyphicon-thumbs-up">Thích</i></button>
-                <button class="col-md-4 btn btn-post">
-                    <i class="glyphicon glyphicon-pencil">Bình luận</i>
-                </button>
-                <input type="hidden" value="true">
-                <button class="col-md-4 btn btn-post">
-                    <i class="glyphicon glyphicon-share">Chia sẻ</i>
-                </button>
-            </div>
-        </div>
-        <div class="post-box-comment">
-            <div class="cmt-box"></div> <!-- Where show comments of the post -->
-            <div id="hiddenCommentBox" class="row icon-cmt-box" style="display: none;">
-                <img src="/images/user-icon.jpg" class="rounded-circle icon-user-small" alt="">
-                <div class='hidden-div'>
-                    <form class="comment-form">
-                        <input class="input-comment" type="text" placeholder="Write comment ...">
-                    </form>
-                </div>
-            </div>
-
-        </div>
-    </div>
-    `
-}
-
-function supportsPageHtm(data) {
-    return `
-    <h4>Contact for supports: </h4>
-    <p>Phone: ${data.phone || "No data"}</p>
-    <p>Email: ${data.email || "No data"}</p>
-    <p>Email: ${data.address || "No data"}</p>
-    `;
-}
-
-function chatHtml() {
-    return `
-    
-    <div>
-        <div class="row chat-window " id="chat_window_1" style="margin-left:10px;">
-            <div class="col-xs-12 col-md-12">
-                <div class="panel panel-default">
-                    <div class="panel-heading top-bar">
-                        <div class="col-md-8 col-xs-8">
-                            <h3 class="panel-title"><span class="glyphicon glyphicon-comment"></span> Chat - Miguel</h3>
-                        </div>
-                        <div class="col-md-4 col-xs-4" style="text-align: right;">
-                            <a href="#"><span id="minim_chat_window" class="glyphicon glyphicon-minus icon_minim"></span></a>
-                            <a href="#"><span class="glyphicon glyphicon-remove icon_close" data-id="chat_window_1"></span></a>
-                        </div>
-                    </div>
-                    <div class="panel-body msg_container_base">
-                        <div class="row msg_container base_sent">
-                            <div class="col-md-10 col-xs-10">
-                                <div class="messages msg_sent">
-                                    <p>that mongodb thing looks good, huh?
-                                    tiny master db, and huge document store</p>
-                                    <time datetime="2009-11-13T20:00">Timothy • 51 min</time>
-                                </div>
-                            </div>
-                            <div class="avatar">
-                                <img src="http://www.bitrebels.com/wp-content/uploads/2011/02/Original-Facebook-Geek-Profile-Avatar-1.jpg" class=" img-responsive ">
-                            </div>
-                        </div>
-                        <div class="row msg_container base_receive">
-                            <div class="avatar">
-                                <img src="http://www.bitrebels.com/wp-content/uploads/2011/02/Original-Facebook-Geek-Profile-Avatar-1.jpg" class=" img-responsive ">
-                            </div>
-                            <div class="col-md-10 col-xs-10">
-                                <div class="messages msg_receive">
-                                    <p>that mongodb thing looks good, huh?
-                                    tiny master db, and huge document store</p>
-                                    <time datetime="2009-11-13T20:00">Timothy • 51 min</time>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row msg_container base_receive">
-                            <div class="avatar">
-                                <img src="http://www.bitrebels.com/wp-content/uploads/2011/02/Original-Facebook-Geek-Profile-Avatar-1.jpg" class=" img-responsive ">
-                            </div>
-                            <div class="col-xs-10 col-md-10">
-                                <div class="messages msg_receive">
-                                    <p>that mongodb thing looks good, huh?
-                                    tiny master db, and huge document store</p>
-                                    <time datetime="2009-11-13T20:00">Timothy • 51 min</time>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row msg_container base_sent">
-                            <div class="col-xs-10 col-md-10">
-                                <div class="messages msg_sent">
-                                    <p>that mongodb thing looks good, huh?
-                                    tiny master db, and huge document store</p>
-                                    <time datetime="2009-11-13T20:00">Timothy • 51 min</time>
-                                </div>
-                            </div>
-                            <div class="avatar">
-                                <img src="http://www.bitrebels.com/wp-content/uploads/2011/02/Original-Facebook-Geek-Profile-Avatar-1.jpg" class=" img-responsive ">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="panel-footer">
-                        <div class="input-group">
-                            <input id="btn-input" type="text" class="form-control input-sm chat_input" placeholder="Write your message here..." />
-                            <span class="input-group-btn">
-                            <button class="btn btn-primary btn-sm" id="btn-chat">Send</button>
-                            </span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        
-        <div class="btn-group dropup">
-            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-                <span class="glyphicon glyphicon-cog"></span>
-                <span class="sr-only">Toggle Dropdown</span>
-            </button>
-            <ul class="dropdown-menu" role="menu">
-                <li><a href="#" id="new_chat"><span class="glyphicon glyphicon-plus"></span> Novo</a></li>
-                <li><a href="#"><span class="glyphicon glyphicon-list"></span> Ver outras</a></li>
-                <li><a href="#"><span class="glyphicon glyphicon-remove"></span> Fechar Tudo</a></li>
-                <li class="divider"></li>
-                <li><a href="#"><span class="glyphicon glyphicon-eye-close"></span> Invisivel</a></li>
-            </ul>
-        </div>
-    </div>
-    `
-}
 
 
-function leftSideProfileHtm() {
-    return `
-    <div class="list-group">
-        <button type="button" class="list-group-item list-group-item-action" onclick="showCreatePostModal()">Giới thiệu</button>
-        <button type="button" class="list-group-item list-group-item-action" onclick="showCreatePostModal()">Bạn bè</button>
-    </div>
-    `;
-}
 
-function leftSideSettingHtm() {
-    return `
-    <div class="list-group">
-        <button type="button" class="list-group-item list-group-item-action" onclick="showCreatePostModal()">Mật khẩu</button>
-        <button type="button" class="list-group-item list-group-item-action" onclick="showCreatePostModal()">Vô hiệu hóa tài khoản</button>
-    </div>
-    `;
-}
 
-function leftSideGroupHtm() {
-    return `
-    <div class="list-group">
-        <button type="button" class="list-group-item list-group-item-action" onclick="showCreatePostModal()">Nhóm củ đậu</button>
-        <button type="button" class="list-group-item list-group-item-action" onclick="showCreatePostModal()">Hội yêu động vật</button>
-        <button type="button" class="list-group-item list-group-item-action" onclick="showCreatePostModal()">Hội blah blah</button>
-    </div>
-    `;
-}
 
-function leftSideWorldHtm() {
-    return `
-    <div class="list-group">
-        <button type="button" class="list-group-item list-group-item-action" onclick="showCreatePostModal()">Tạo bài đăng mới</button>
-        <button type="button" class="list-group-item list-group-item-action" onclick="showCreatePostModal()">Người nổi tiếng</button>
-        <button type="button" class="list-group-item list-group-item-action" onclick="showCreatePostModal()">Đã thích</button>
-        <button type="button" class="list-group-item list-group-item-action" onclick="showCreatePostModal()">Đang bình luận</button>
-    </div>
-    `;
-}
 
-function leftSideMessageHtm() {
-    return `
-    <div class="list-group">
-        <button type="button" class="list-group-item list-group-item-action" onclick="showCreatePostModal()">Nguyễn y vân</button>
-        <button type="button" class="list-group-item list-group-item-action" onclick="showCreatePostModal()">Nguyễn Blah</button>
-        <button type="button" class="list-group-item list-group-item-action" onclick="showCreatePostModal()">Nguyễn Bloh</button>
-        <button type="button" class="list-group-item list-group-item-action" onclick="showCreatePostModal()">Nguyễn Bleh</button>
-    </div>
-    `;
-}
 
-function leftSideSupportHtm() {
-    return `
-    <div class="list-group">
-        <button type="button" class="list-group-item list-group-item-action" onclick="showCreatePostModal()">Chính sách</button>
-        <button type="button" class="list-group-item list-group-item-action" onclick="showCreatePostModal()">Thông tin liên hệ</button>
-    </div>
-    `;
-}
 
-function leftSidePostHtm() {
-    return `
-    <div class="list-group">
-        <button type="button" class="list-group-item list-group-item-action" onclick="showCreatePostModal()">Tạo bài mới</button>
-    </div>
-    `;
-}
 
-function peopleModalHtm(user) {
-    return `
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h4 class="modal-title">Trang cá nhân<h4>
-                
-            </div>
-            <div class="modal-body form-group">
-                <p>${user.name}</p>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn" onclick="addFriend(${user.id})">Kết bạn</button>
-            </div>
-        </div>
-    </div>
-    
-    `
-}
+
+
+
+
+
+
+
+
+
+
+
 
 async function profileOnclick() {
     let rep = await $.get('/account');
@@ -371,22 +96,35 @@ async function gameOnclick() {
 }
 
 async function messagesOnclick() {
-    let rep = await $.get('/account');
+    let rep = await $.get('/talks');
     if (!rep) return error500();
     if (!rep.success) {
         return showReport(rep.msg);
     };
 
-    let htm = userinfoHtm(rep.account);
-    let leftHtm = leftSideMessageHtm();
 
-    let mainView = $("#view-screen");
-    mainView.empty();
-    mainView.append(htm);
+    let leftHtm = leftSideMessageHtm(rep.talks);
+
+    // let mainView = $("#view-screen");
+    // mainView.empty();
+    // mainView.append(htm);
 
     let leftside = $("#leftside");
     leftside.empty();
     leftside.append(leftHtm);
+}
+
+async function getTalk(id) {
+    let rep = await $.get('/talk');
+    if (!rep) return error500();
+    if (!rep.success) {
+        return showReport(rep.msg);
+    };
+
+    let htm = chatHtml(rep.talk.messages, rep.host);
+    let mainView = $("#view-screen");
+    mainView.empty();
+    mainView.append(htm);
 }
 
 async function supportsOnclick() {
@@ -479,13 +217,6 @@ function error500() {
     mainView.append(htm);
 }
 
-function showReport(rp) {
-    $('#report-content').text(rp);
-    $('#reportmodal').modal('show');
-    setTimeout(() => {
-        $('#reportmodal').modal('hide');
-    }, 1500);
-}
 
 
 function showCreatePostModal() {
@@ -569,11 +300,7 @@ function logSmt() {
     console.log("ok")
 }
 
-function userFindHtm(user) {
-    return `<li class="search-element" onclick="showPeopleModal(${user.id})">${user.name}</li>`
-                
-         
-}
+
 
 function autoComplete() {
     let typehead = $("#typehead");
@@ -583,28 +310,20 @@ function autoComplete() {
         return showSearchHistory();
     }
     // to get data from where search
-    let users = [
-        {
-            id: 1,
-            name: `${typeheadVal}ffsf`,
-            avatar: 'user-icon.jpg',
-        },
-        {
-            id: 2,
-            name: `${typeheadVal}saf asfaf`,
-            avatar: 'user-icon.jpg',
-        }
-    ]
-    // cho api 
-    let htm;
-    htm =  `<ul class='dropdown'>`;
-    users.forEach(user => {
-        htm += userFindHtm(user);
+    io.socket.get('/findUser',{
+        searchPattern: typeheadVal,
+    }, (body, jw) => {
+        console.log(body);
+  
     })
-    htm +=  `</ul>`
-    dropdown.empty();
-    dropdown.append(htm);
-    dropdown.show();
+    io.socket.on('findUser', users => {
+        let htm = userFindHtm(users);
+        dropdown.empty();
+        dropdown.append(htm);
+        dropdown.show();
+    })
+    
+    
 }
 
 function showSearchHistory() {
@@ -624,11 +343,7 @@ function showSearchHistory() {
 
     let dropdown = $("#typehead-dropdown");
 
-    let htm =  `<ul class='dropdown'>`;
-    users.forEach(user => {
-        htm += userFindHtm(user);
-    })
-    htm +=  `</ul>`;
+    let htm = userFindHtm(users);
 
     dropdown.empty();
     dropdown.append(htm);
@@ -639,7 +354,7 @@ function showSearchHistory() {
 
 async function showPeopleModal(id) {
     let rep = await $.get(`/user/${id}`);
-    let modal = peopleModalHtm(rep.user);
+    let modal = peopleModalHtm(rep.user, rep.isSelf, rep.isFriend);
     let peopleModal = $('#peopleModal');
     peopleModal.empty();
     peopleModal.append(modal);
@@ -664,4 +379,8 @@ function renderTime(ms) {
     else {
         return new Date(time).toLocaleString();
     }
+}
+
+function deleteFriend() {
+    
 }

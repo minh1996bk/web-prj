@@ -3,8 +3,9 @@ module.exports = {
         if (!req.isSocket) {
             return res.badRequest();
         }
-        console.log("ok");
-        sails.sockets.broadcast(sails.sockets.getId(req), 'hello', 'dm');
+        let searchPattern = req.body.searchPattern;
+        let user = await Account.findUser(searchPattern);
+        sails.sockets.broadcast(sails.sockets.getId(req), 'findUser', user);
         res.ok();
     }
 }

@@ -62,10 +62,16 @@ module.exports = {
     },
 
     getUser: async function(req, res) {
-        let user = await Account.findOne({'id': req.params.id});
+        let userId = req.params.id;
+        let selfId = req.session.userId;
+
+        let user = await Account.findOne({'id': userId});
+        let friendIds = await Link.getFriendIds(selfId);
         return res.json({
             success: true,
-            user: user
+            user: user,
+            isFriend: friendIds.includes(userId),
+            isSelf: selfId == userId
         })
     }
     

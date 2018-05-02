@@ -45,6 +45,9 @@ module.exports.routes = {
   'post /updateLink' : 'LinkController.updateLink',
   'get /user/:id' : 'AccountController.getUser',
   'get /findUser' : 'SocketController.findUser',
+
+  'get /talks' : 'TalkController.getTalks',
+  'get /talk' : 'TalkController.getTalk'
   /***************************************************************************
   *                                                                          *
   * More custom routes here...                                               *
