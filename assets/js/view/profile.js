@@ -32,7 +32,7 @@ function userinfoHtm(user) {
 function leftSideProfileHtm(avatar) {
     return `
     <div class="avatar-profile">
-        <img id="img_avatar" src="${avatar}" class="img-rounded " alt="Cinque Terre"> 
+        <img id="img_avatar" src="${avatar}" class="img-responsive " alt="Cinque Terre"> 
         <input type="button" id="get_file" value="Update" onclick="showSelectFile()">
         <input type="file" id="my_file" onchange="updateAvatar()">
     </div>

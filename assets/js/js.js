@@ -203,8 +203,10 @@ function hideCreatePostModal() {
 }
 
 async function doPost() {
+    let url = await doUploadAndGetUrl('post-img');
     let post = {
         text: $("#post-content").val(),
+        img: url,
     }
     
     let rep = await $.post('/post', post);

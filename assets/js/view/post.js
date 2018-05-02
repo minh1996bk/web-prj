@@ -3,7 +3,7 @@ function aPostHtm(post) {
     <div class="well post-box rounded" style="background-color: white;">
         <div class="post-box-content rounded">
             <div class="well row" style="flex-wrap: nowrap !important; margin: 0 !important; padding: 1px;">
-                <img src="https://kenh14cdn.com/2017/-1488451960776.jpg" class="col-md-2 rounded-circle icon-user" alt="">
+                <img src="${post.owner.avatar}" class="col-md-2 rounded-circle icon-user" alt="">
                 <div class="col-md-6">
                     <p onclick="showPeopleModal(${post.owner.id})" class='user-name'>${post.owner.name}</p>
                     <h6 style="margin-bottom: 0;">${renderTime(post.createdAt)}</h6>
@@ -12,7 +12,7 @@ function aPostHtm(post) {
 
             <div class="well" style="margin-top: 10px;">
                 <div>
-                    <p>Day la anh</p>
+                    <img src="${post.img}" class="img-rounded">
                 </div>
                 <div>
                     <p>${post.text}</p>

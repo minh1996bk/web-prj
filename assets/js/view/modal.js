@@ -13,7 +13,7 @@ function peopleModalHtm(user, isSelf, isFriend) {
                 
             </div>
             <div class="modal-body form-group">
-                <img src="https://kenh14cdn.com/2017/-1488451960776.jpg" class="img-rounded avatar-modal" alt="Cinque Terre">
+                <img src="${user.avatar}" class="img-rounded avatar-modal" alt="Cinque Terre">
                 <h2 class="name-modal">${user.name}</h2>
             </div>
             <div class="modal-footer">

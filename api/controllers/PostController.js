@@ -6,6 +6,7 @@ module.exports = {
         await Post.create({
             owner: req.session.userId,
             text: req.body.text,
+            img: req.body.img,
         })
         return res.json({
             success: true,
