@@ -36,7 +36,7 @@ function chatHtml(messages, host) {
     <div>
         <div class="row chat-window " id="chat_window_1" style="margin-left:10px;">
             <div class="col-xs-12 col-md-12">
-                <div class="panel panel-default">
+                <div class="panel panel-default chat-box">
                     <div class="panel-heading top-bar">
                         <div class="col-md-8 col-xs-8">
                             <h3 class="panel-title"><span class="glyphicon glyphicon-comment"></span> Chat - Miguel</h3>
@@ -49,7 +49,7 @@ function chatHtml(messages, host) {
                     <div class="panel-body msg_container_base">
                         ${messagesText}
                     </div>
-                    <div class="panel-footer">
+                    <div class="panel-footer input-chat">
                         <div class="input-group">
                             <input id="btn-input" type="text" class="form-control input-sm chat_input" placeholder="Write your message here..." />
                             <span class="input-group-btn">

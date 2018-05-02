@@ -90,6 +90,70 @@ module.exports = {
                             avatar: 'icon.jpg'
                         },
                         text: "chui cl"
+                    },
+                    {
+                        owner: {
+                            id: 2,
+                            name: "Nam",
+                            avatar: 'icon.jpg'
+                        },
+                        text: "chui cl"
+                    },
+                    {
+                        owner: {
+                            id: 2,
+                            name: "Nam",
+                            avatar: 'icon.jpg'
+                        },
+                        text: "chui cl"
+                    },
+                    {
+                        owner: {
+                            id: 2,
+                            name: "Nam",
+                            avatar: 'icon.jpg'
+                        },
+                        text: "chui cl"
+                    },
+                    {
+                        owner: {
+                            id: 2,
+                            name: "Nam",
+                            avatar: 'icon.jpg'
+                        },
+                        text: "chui cl"
+                    },
+                    {
+                        owner: {
+                            id: 2,
+                            name: "Nam",
+                            avatar: 'icon.jpg'
+                        },
+                        text: "chui cl"
+                    },
+                    {
+                        owner: {
+                            id: 2,
+                            name: "Nam",
+                            avatar: 'icon.jpg'
+                        },
+                        text: "chui cl"
+                    },
+                    {
+                        owner: {
+                            id: 2,
+                            name: "Nam",
+                            avatar: 'icon.jpg'
+                        },
+                        text: "chui cl"
+                    },
+                    {
+                        owner: {
+                            id: 2,
+                            name: "Nam",
+                            avatar: 'icon.jpg'
+                        },
+                        text: "chui cl"
                     }
                 ]
             }
