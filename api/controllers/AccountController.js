@@ -70,7 +70,7 @@ module.exports = {
         return res.json({
             success: true,
             user: user,
-            isFriend: friendIds.includes(userId),
+            isFriend: friendIds.includes(user.id),
             isSelf: selfId == userId
         })
     }

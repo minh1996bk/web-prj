@@ -328,6 +328,8 @@ function showSearchHistory() {
 
 async function showPeopleModal(id) {
     let rep = await $.get(`/user/${id}`);
+    if (!rep) return error500();
+    if (!rep.success) return showReport(rep.msg);
     let modal = peopleModalHtm(rep.user, rep.isSelf, rep.isFriend);
     let peopleModal = $('#peopleModal');
     peopleModal.empty();
