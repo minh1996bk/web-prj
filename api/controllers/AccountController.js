@@ -3,7 +3,7 @@ module.exports = {
         await Account.createAccount({
             username: req.body.username,
             pwd: req.body.pwd,
-            
+            name: req.body.name,
         })
         return res.json({
             success: true,

@@ -51,6 +51,7 @@ module.exports = {
         let hashPwd = await bcrypt.hash(account.pwd, salt);
         await Account.create({
             username: account.username,
+            name:account.name,
             pwd: hashPwd,
             avatar: 'images/default-avatar.png',
         });

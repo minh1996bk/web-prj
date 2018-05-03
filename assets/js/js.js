@@ -247,6 +247,7 @@ async function doLogin() {
 async function doSignin() {
     let account = {
         username: $("#usernamesignin").val(),
+        name: $("#namesignin").val(),
         pwd: $("#pwdsignin").val(),
         pwdrepeat: $("#pwdrepeatsignin").val(),
     }

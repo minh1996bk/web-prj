@@ -19,11 +19,14 @@ async function addFriend(id) {
     let rep = await $.post('/addFriend', {
         friendId: id
     });
+    let peopleModal = $('#peopleModal');
+    peopleModal.modal('hide');
     if (!rep) return error500();
     if (!rep.success) {
+        
         return showReport(rep.msg);
     };
-   
+    renderListFriend();
     return showReport(rep.msg);
     
 }

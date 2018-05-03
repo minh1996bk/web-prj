@@ -1,18 +1,30 @@
 module.exports = {
     createTalk: async function(req, res) {
+        let owner = req.session.userId;
+        let members = req.body.members;
+
+        if (req.body.withFriend) {
+            let friendId = members[0];
+            let talkId = await Link.getTalkId(owner, friendId);
+            if (talkId) return res.json({
+                success: true,
+                talkId: talkId,
+            })
+        }
         let newTalk = await Talk.create({
             name: req.body.name,
         })
         .fetch();
-        let members = req.body.members;
+       
         
-        members.push(req.session.userId);
+        members.push(owner);
 
         await Talk.addToCollection(newTalk.id, 'members')
         .members(members);
         
         return res.json({
             success: true,
+            talkId: newTalk.id,
         })
         
     },
