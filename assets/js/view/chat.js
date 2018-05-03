@@ -80,13 +80,13 @@ function aMessageHtm(msg, host) {
                                 </div>
                             </div>
                             <div class="avatar">
-                                <img src="${msg.owner.avatar}" class=" img-responsive ">
+                                <img src="${msg.owner.avatar}" class=" img-responsive-chat ">
                             </div>
                         </div>`;
     } else {
         return `<div class="row msg_container base_receive">
                             <div class="avatar">
-                                <img src="${msg.owner.avatar}" class=" img-responsive ">
+                                <img src="${msg.owner.avatar}" class=" img-responsive-chat ">
                             </div>
                             <div class="col-md-10 col-xs-10">
                                 <div class="messages msg_receive">
