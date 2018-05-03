@@ -69,8 +69,11 @@ module.exports = {
 
         let user = await Account.findOne({'id': userId});
         let friendIds = await Link.getFriendIds(selfId);
+        let chat = await Chat.findChat(selfId, userId);
+        let talkId = chat ? chat.talkId : -1;
         return res.json({
             success: true,
+            talkId: talkId,
             user: user,
             isFriend: friendIds.includes(user.id),
             isSelf: selfId == userId

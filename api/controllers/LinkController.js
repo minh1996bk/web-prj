@@ -33,7 +33,6 @@ module.exports = {
         let friendId = req.body.friendId;
 
         await Link.addToFriends(owner, friendId);
-        await Link.addToFriends(friendId, owner);
         return res.json({
             success: true,
             msg: "Kết bạn thanh công"

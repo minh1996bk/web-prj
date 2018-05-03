@@ -53,6 +53,8 @@ module.exports.routes = {
   'get /friends' : 'LinkController.getFriends',
   'post /addFriend' : 'LinkController.addFriend',
   'post /uploadImage' : 'FileController.uploadAvatar',
+
+  'post /createChat' : 'ChatController.createChat',
  
 
   /***************************************************************************

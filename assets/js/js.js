@@ -69,37 +69,8 @@ async function gameOnclick() {
     leftside.append(leftHtm);
 }
 
-async function messagesOnclick() {
-    let rep = await $.get('/talks');
-    if (!rep) return error500();
-    if (!rep.success) {
-        return showReport(rep.msg);
-    };
 
 
-    let leftHtm = leftSideMessageHtm(rep.talks);
-
-    // let mainView = $("#view-screen");
-    // mainView.empty();
-    // mainView.append(htm);
-
-    let leftside = $("#leftside");
-    leftside.empty();
-    leftside.append(leftHtm);
-}
-
-async function getTalk(id) {
-    let rep = await $.get('/talk');
-    if (!rep) return error500();
-    if (!rep.success) {
-        return showReport(rep.msg);
-    };
-
-    let htm = chatHtml(rep.talk.messages, rep.host);
-    let mainView = $("#view-screen");
-    mainView.empty();
-    mainView.append(htm);
-}
 
 async function supportsOnclick() {
     let rep = await $.get('/supports');
@@ -194,13 +165,8 @@ function error500() {
 
 
 
-function showCreatePostModal() {
-    $('#postmodal').modal('show');
-}
 
-function hideCreatePostModal() {
-    $('#postmodal').modal('hide');
-}
+
 
 async function doPost() {
     let url = await doUploadAndGetUrl('post-img');
@@ -331,28 +297,9 @@ function showSearchHistory() {
 
 
 
-async function showPeopleModal(id) {
-    let rep = await $.get(`/user/${id}`);
-    if (!rep) return error500();
-    if (!rep.success) return showReport(rep.msg);
-    let modal = peopleModalHtm(rep.user, rep.isSelf, rep.isFriend);
-    let peopleModal = $('#peopleModal');
-    peopleModal.empty();
-    peopleModal.append(modal);
-    peopleModal.modal("show");
-    $("#typehead-dropdown").empty();
-    $("#typehead-dropdown").hide();
-}
 
-function showCreateGroupModal() {
-    let modal = createGroupModal();
-    let peopleModal = $('#peopleModal');
-    peopleModal.empty();
-    peopleModal.append(modal);
-    peopleModal.modal("show");
-    $("#typehead-dropdown").empty();
-    $("#typehead-dropdown").hide();
-}
+
+
 
 function hideDropdown() {
     $("#typehead-dropdown").empty();
