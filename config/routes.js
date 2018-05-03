@@ -48,7 +48,7 @@ module.exports.routes = {
   'get /findUser' : 'SocketController.findUser',
 
   'get /talks' : 'TalkController.getTalks',
-  'get /talk' : 'TalkController.getTalk',
+  'get /talk/:id' : 'TalkController.getTalk',
 
   'get /friends' : 'LinkController.getFriends',
   'post /addFriend' : 'LinkController.addFriend',

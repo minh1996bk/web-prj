@@ -34,7 +34,7 @@ async function showMainSide(talkId) {
 
 
 async function getTalk(id) {
-    let rep = await $.get('/talk');
+    let rep = await $.get(`/talk/${id}`);
     if (!rep) return error500();
     if (!rep.success) {
         return showReport(rep.msg);
