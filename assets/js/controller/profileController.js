@@ -20,6 +20,22 @@ async function showMyTimes() {
     renderPosts(rep.posts);
 }
 
+async function showImageAlbum() {
+    let rep = await $.get('/getImageAlbum');
+    if (!rep) return error500();
+    if (!rep.success) {
+        return showReport(rep.msg);
+    };
+    renderImageAlbum(rep.urls);
+}
+
+function renderImageAlbum(urls) {
+    let htm = imageAlbumHtm(urls);
+    let mainView = $("#view-screen");
+    mainView.empty();
+    mainView.append(htm);
+}
+
 function renderMainProfile(account) {
     let htm = userinfoHtm(account);
     let mainView = $("#view-screen");

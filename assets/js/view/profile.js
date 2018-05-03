@@ -38,8 +38,17 @@ function leftSideProfileHtm(avatar) {
     <div class="list-group">
         <button type="button" class="list-group-item list-group-item-action" onclick="profileOnclick()">Thông tin cá nhân</button>
         <button type="button" class="list-group-item list-group-item-action" onclick="showMyTimes()">Dòng thời gian</button>
-        <button type="button" class="list-group-item list-group-item-action" onclick="showCreatePostModal()">Album ảnh</button>
+        <button type="button" class="list-group-item list-group-item-action" onclick="showImageAlbum()">Album ảnh</button>
         <button type="button" class="list-group-item list-group-item-action" onclick="showCreatePostModal()">Video</button>
     </div>
     `;
+}
+
+
+function imageAlbumHtm(urls) {
+    let htm = ``;
+    urls.forEach(url => {
+        htm += `<img src="${url}" class="img-responsive " alt="Cinque Terre">`;
+    });
+    return htm;
 }

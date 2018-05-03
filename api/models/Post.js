@@ -55,5 +55,16 @@ module.exports = {
         })
         .sort([{createdAt: 'DESC'}])
         .populate('owner');
+    },
+    getImageAlbum: async function(userId) {
+        let posts =  await Post.find({
+            where: {
+                owner: userId
+            },
+            select: ['img']
+        })
+        return posts.map(post => {
+            return post.img;
+        })
     }
 }

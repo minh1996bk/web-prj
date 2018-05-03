@@ -9,6 +9,7 @@ var hostData;
     }
     hostData = rep.account;
     renderListFriend();
+    friendOnclick();
 })();
 
 $(document).ready(function() {
@@ -45,78 +46,7 @@ function error500() {
 
 
 
-async function doPost() {
-    let url = await doUploadAndGetUrl('post-img');
-    let post = {
-        text: $("#post-content").val(),
-        img: url,
-    }
-    
-    let rep = await $.post('/post', post);
-    if (!rep) return error500();
-    if (rep.success) {
-        hideCreatePostModal();
-    }
-    showReport(rep.msg);
-    friendOnclick();
 
-}
-
-async function doLogin() {
-    let account = {
-        username: $("#usernamelogin").val(),
-        pwd: $("#pwdlogin").val(),
-    }
-
-    let rep = await $.post("/login", account);
-    if (!rep) {
-        error500();
-    } else if (rep.success) {
-        loginSuccess();
-    } else {
-        loginFail(rep.msg);
-    }
-
-    function loginSuccess() {
-        location.reload(true);
-    }
-
-    function loginFail(msg) {
-
-        let showError = $('#loginerror');
-        showError.text(msg);
-    }
-}
-async function doSignin() {
-    let account = {
-        username: $("#usernamesignin").val(),
-        name: $("#namesignin").val(),
-        pwd: $("#pwdsignin").val(),
-        pwdrepeat: $("#pwdrepeatsignin").val(),
-    }
-    let rep = await $.post("/register", account);
-    if (!rep) {
-        error500();
-    } else if (rep.success) {
-        registerSuccess();
-    } else {
-        registerFail(rep.msg);
-    }
-    function registerSuccess() {
-        location.reload(true);
-    }
-
-    function registerFail(msg) {
-        let showError = $('#registererror');
-        showError.text(msg);
-    }
-}
-
-async function doLogout() {
-    await $.get('/logout');
-    location.reload(true);
-    
-}
 
 
 
@@ -132,7 +62,7 @@ function autoComplete() {
     io.socket.get('/findUser',{
         searchPattern: typeheadVal,
     }, (body, jw) => {
-        console.log(body);
+      //just ignore
   
     })
     io.socket.on('findUser', users => {
@@ -151,12 +81,12 @@ function showSearchHistory() {
         {
             id: 1,
             name: 'Nguyen Dinh Minh',
-            avatar: 'user-icon.jpg',
+            avatar: 'default-avatar.jpg',
         },
         {
             id: 2,
             name: `saf asfaf`,
-            avatar: 'user-icon.jpg',
+            avatar: 'default-avatar.jpg',
         }
     ]
 

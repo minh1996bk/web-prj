@@ -42,6 +42,7 @@ module.exports.routes = {
   'get /posts' : 'PostController.getPosts',
   'get /mytimes' : 'PostController.getMyPosts',
   'get /publicPosts' : 'PostController.getPublicPosts',
+  'get /getImageAlbum' : 'PostController.getImageAlbum',
   'post /post' : 'PostController.createPost',
   'post /createLink' : 'LinkController.createLink',
   'post /updateLink' : 'LinkController.updateLink',

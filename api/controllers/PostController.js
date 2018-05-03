@@ -46,5 +46,13 @@ module.exports = {
             success: true,
             posts: posts,
         })
+    },
+    getImageAlbum: async function(req, res) {
+        let userId = req.session.userId;
+        let urls = await Post.getImageAlbum(userId);
+        return res.json({
+            success: true,
+            urls: urls,
+        })
     }
 }

@@ -13,6 +13,23 @@ async function friendOnclick() {
     leftSide.append(leftHtm);
 }
 
+async function doPost() {
+    let url = await doUploadAndGetUrl('post-img');
+    let post = {
+        text: $("#post-content").val(),
+        img: url,
+    }
+    
+    let rep = await $.post('/post', post);
+    if (!rep) return error500();
+    if (rep.success) {
+        hideCreatePostModal();
+    }
+    showReport(rep.msg);
+    friendOnclick();
+
+}
+
 function renderPosts(posts) {
     let htm ="";
     posts.forEach(post => {
