@@ -1,5 +1,5 @@
 function peopleModalHtm(talkId, user, isSelf, isFriend) {
-    let htm = isSelf ? `` : `<button type="button" onclick="doChat(${talkId || null}, ${user.id})" class="btn">Nhắn tin</button>`;
+    let htm = isSelf ? `` : `<button type="button" data-dismiss="modal" onclick="doChat(${talkId || null}, ${user.id})" class="btn">Nhắn tin</button>`;
     htm += isSelf ? `` : isFriend ? 
         `<button type="button" class="btn" onclick="deleteFriend(${user.id})">Hủy kết bạn</button>` : 
         `<button type="button" class="btn" onclick="addFriend(${user.id})">Kết bạn</button>`;

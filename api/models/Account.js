@@ -108,5 +108,21 @@ module.exports = {
         .populate('talks');
 
         return account.talks.map(talk => talk.id);
+    },
+
+    getNames: async function(userIds) {
+        let users =  await Account.find({
+            where: {
+                id: {
+                    'in' : userIds
+                }
+            },
+            select: ['name']
+        });
+
+        return users.map(user => {
+            return user.name;
+        })
+    
     }
 }

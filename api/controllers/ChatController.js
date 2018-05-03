@@ -2,9 +2,10 @@ module.exports = {
     createChat: async function(req, res) {
         let owner = req.session.userId;
         let friend = req.body.userId;
-
+        let names = await Account.getNames([owner, friend]);
+        let talkName = names.join(',');
         let newTalk = await Talk.create({
-            name: req.body.name,
+            name: talkName,
         })
         .fetch();
        
