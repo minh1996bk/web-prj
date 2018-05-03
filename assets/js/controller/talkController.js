@@ -50,7 +50,11 @@ async function messagesOnclick() {
         return showReport(rep.msg);
     };
     renderLeftSideMessage(rep.talks);
-    getTalk(rep.talks[0].id);
+    console.log(rep.talks);
+    if (!rep.talks) {
+        getTalk(rep.talks[0].id);
+    }
+    
 }
 
 function renderLeftSideMessage(talks) {

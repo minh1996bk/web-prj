@@ -25,6 +25,7 @@ module.exports = {
             'id': req.session.userId,
         })
         .populate('talks');
+        
         return res.json({
             success: true,
             talks: account.talks,
@@ -35,7 +36,6 @@ module.exports = {
         let talk = await Talk.findOne({'id': req.params.id})
         .populate('members').populate('messages');
         let messages = talk.messages;
-
         let messageOwners = await Account.find({
             where: {
                 id: _.pluck(messages, 'owner')
