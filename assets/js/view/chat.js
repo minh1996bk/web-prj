@@ -76,22 +76,22 @@ function aMessageHtm(msg, host) {
                             <div class="col-md-10 col-xs-10">
                                 <div class="messages msg_sent">
                                     <p>${msg.text}</p>
-                                    <time datetime="2009-11-13T20:00">Timothy • 51 min</time>
+                              
                                 </div>
                             </div>
                             <div class="avatar">
-                                <img src="http://www.bitrebels.com/wp-content/uploads/2011/02/Original-Facebook-Geek-Profile-Avatar-1.jpg" class=" img-responsive ">
+                                <img src="${msg.owner.avatar}" class=" img-responsive ">
                             </div>
                         </div>`;
     } else {
         return `<div class="row msg_container base_receive">
                             <div class="avatar">
-                                <img src="http://www.bitrebels.com/wp-content/uploads/2011/02/Original-Facebook-Geek-Profile-Avatar-1.jpg" class=" img-responsive ">
+                                <img src="${msg.owner.avatar}" class=" img-responsive ">
                             </div>
                             <div class="col-md-10 col-xs-10">
                                 <div class="messages msg_receive">
                                     <p>${msg.text}</p>
-                                    <time datetime="2009-11-13T20:00">Timothy • 51 min</time>
+                                    
                                 </div>
                             </div>
                         </div>`;

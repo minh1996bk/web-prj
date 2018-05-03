@@ -44,13 +44,14 @@ async function getTalk(id) {
 
 
 async function messagesOnclick() {
+    hideNewMessageIcon();
     let rep = await $.get('/talks');
     if (!rep) return error500();
     if (!rep.success) {
         return showReport(rep.msg);
     };
     renderLeftSideMessage(rep.talks);
-    console.log(rep.talks);
+
     if (!rep.talks) {
         getTalk(rep.talks[0].id);
     }
@@ -84,4 +85,12 @@ function sendMessage(talkId) {
         console.log(res, jw)
     });
 
+}
+
+function showNewMessageIcon() {
+    $('#icon-new-message').addClass('glyphicon glyphicon-envelope');
+}
+
+function hideNewMessageIcon() {
+    $('#icon-new-message').removeClass('glyphicon glyphicon-envelope');
 }

@@ -22,6 +22,7 @@ $(document).ready(function() {
 
 function renderIncomingMessage(data) {
     let inputCurrentTalk = $('#inputCurrentTalk');
+    showNewMessageIcon();
     if (inputCurrentTalk.val() == data.talkId) {
         appendNewMessage(data, hostData.id);
     }
