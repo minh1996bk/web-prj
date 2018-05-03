@@ -38,5 +38,13 @@ module.exports = {
             success: true,
             posts: posts
         })
+    },
+    getMyPosts: async function(req, res) {
+        let userId = req.session.userId;
+        let posts = await Post.getMyPosts(userId);
+        return res.json({
+            success: true,
+            posts: posts,
+        })
     }
 }

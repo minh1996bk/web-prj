@@ -36,5 +36,9 @@ module.exports.policies = {
   },
   SocketController: {
     online: 'is-login',
+  },
+  TalkController: {
+    getTalks: 'is-login'
   }
+
 };

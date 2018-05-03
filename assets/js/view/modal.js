@@ -1,5 +1,5 @@
 function peopleModalHtm(talkId, user, isSelf, isFriend) {
-    let htm = `<button type="button" onclick="doChat(${talkId || null}, ${user.id})" class="btn">Nhắn tin</button>`
+    let htm = isSelf ? `` : `<button type="button" onclick="doChat(${talkId || null}, ${user.id})" class="btn">Nhắn tin</button>`;
     htm += isSelf ? `` : isFriend ? 
         `<button type="button" class="btn" onclick="deleteFriend(${user.id})">Hủy kết bạn</button>` : 
         `<button type="button" class="btn" onclick="addFriend(${user.id})">Kết bạn</button>`;
@@ -10,7 +10,6 @@ function peopleModalHtm(talkId, user, isSelf, isFriend) {
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
                 <h4 class="modal-title">Trang cá nhân<h4>
-                
             </div>
             <div class="modal-body form-group">
                 <img src="${user.avatar}" class="img-rounded avatar-modal" alt="Cinque Terre">
@@ -20,9 +19,7 @@ function peopleModalHtm(talkId, user, isSelf, isFriend) {
                 ${htm}
             </div>
         </div>
-    </div>
-    
-    `
+    </div>`
 }
 
 function showReport(rp) {

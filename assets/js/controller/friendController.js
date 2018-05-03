@@ -1,4 +1,4 @@
-renderListFriend();
+
 
 async function renderListFriend() {
     let rep = await $.get('/friends');

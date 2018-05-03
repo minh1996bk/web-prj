@@ -5,14 +5,30 @@ async function profileOnclick() {
         return showReport(rep.msg);
     };
 
-    let htm = userinfoHtm(rep.account);
-  
-    let leftHtm = leftSideProfileHtm(rep.account.avatar);
+    renderMainProfile(rep.account);
+    renderLeftSideProfile(rep.account.avatar);
+    
+}
 
+async function showMyTimes() {
+    let rep = await $.get('/mytimes');
+    if (!rep) return error500();
+    if (!rep.success) {
+        return showReport(rep.msg);
+    };
+    
+    renderPosts(rep.posts);
+}
+
+function renderMainProfile(account) {
+    let htm = userinfoHtm(account);
     let mainView = $("#view-screen");
     mainView.empty();
     mainView.append(htm);
+}
 
+function renderLeftSideProfile(avatar) {
+    let leftHtm = leftSideProfileHtm(avatar);
     let leftside = $("#leftside");
     leftside.empty();
     leftside.append(leftHtm);

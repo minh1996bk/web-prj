@@ -4,7 +4,6 @@
 function userinfoHtm(user) {
     return `
     <div id="profile-panel" class="modal-body form-group">
-
         <label for="usr-name-input">Họ và tên:</label>
         <input class="form-control" id="usr-name-input" value="${user.name || ''}">
         <label for="usr-phone-input">Số điện thoại:</label>
@@ -37,8 +36,8 @@ function leftSideProfileHtm(avatar) {
         <input type="file" id="my_file" onchange="updateAvatar()">
     </div>
     <div class="list-group">
-        <button type="button" class="list-group-item list-group-item-action" onclick="showCreatePostModal()">Thông tin cá nhân</button>
-        <button type="button" class="list-group-item list-group-item-action" onclick="showCreatePostModal()">Dòng thời gian</button>
+        <button type="button" class="list-group-item list-group-item-action" onclick="profileOnclick()">Thông tin cá nhân</button>
+        <button type="button" class="list-group-item list-group-item-action" onclick="showMyTimes()">Dòng thời gian</button>
         <button type="button" class="list-group-item list-group-item-action" onclick="showCreatePostModal()">Album ảnh</button>
         <button type="button" class="list-group-item list-group-item-action" onclick="showCreatePostModal()">Video</button>
     </div>

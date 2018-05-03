@@ -1,13 +1,19 @@
 var hostData;
 
 (async function() {
-    let rep = await $.get('/account'); 
+    let rep = await $.get('/account');
+    if (!rep) return error500();
+    if (!rep.success) {
+        worldOnclick();
+        return $("#loginmodal").modal('show');
+    }
     hostData = rep.account;
+    renderListFriend();
 })();
 
 $(document).ready(function() {
     io.socket.post('/online', {name: "minh"}, (res, jwres) => {
-        console.log(res, jwres);
+        //just ignore!!!
     })
 
     io.socket.on('sendMessage', renderIncomingMessage);
@@ -16,9 +22,13 @@ $(document).ready(function() {
 function renderIncomingMessage(data) {
     let inputCurrentTalk = $('#inputCurrentTalk');
     if (inputCurrentTalk.val() == data.talkId) {
-        let htm = aMessageHtm(data, hostData.id);
-        $('#messages-view').append(htm);
+        appendNewMessage(data, hostData.id);
     }
+}
+
+function appendNewMessage(data, hostId) {
+    let htm = aMessageHtm(data, hostId);
+    $('#messages-view').append(htm);
 }
 
 function error500() {
@@ -106,9 +116,6 @@ async function doLogout() {
     await $.get('/logout');
     location.reload(true);
     
-}
-function logSmt() {
-    console.log("ok")
 }
 
 

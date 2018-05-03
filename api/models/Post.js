@@ -45,5 +45,15 @@ module.exports = {
         })
         .sort([{createdAt: 'DESC'}])
         .populate('owner');
+    },
+    getMyPosts: async function(userId) {
+        return await Post.find({
+            where: {
+                owner: userId
+            },
+            select: ['createdAt', 'id', 'text', 'img', 'owner']
+        })
+        .sort([{createdAt: 'DESC'}])
+        .populate('owner');
     }
 }
