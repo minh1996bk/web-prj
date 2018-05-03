@@ -1,3 +1,26 @@
+var hostData;
+
+(async function() {
+    let rep = await $.get('/account'); 
+    hostData = rep.account;
+})();
+
+$(document).ready(function() {
+    io.socket.post('/online', {name: "minh"}, (res, jwres) => {
+        console.log(res, jwres);
+    })
+
+    io.socket.on('sendMessage', renderIncomingMessage);
+})
+
+function renderIncomingMessage(data) {
+    let inputCurrentTalk = $('#inputCurrentTalk');
+    if (inputCurrentTalk.val() == data.talkId) {
+        let htm = aMessageHtm(data, hostData.id);
+        $('#messages-view').append(htm);
+    }
+}
+
 async function profileOnclick() {
     let rep = await $.get('/account');
     if (!rep) return error500();

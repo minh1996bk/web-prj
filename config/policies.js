@@ -33,6 +33,8 @@ module.exports.policies = {
   PostController: {
     getPosts: ['is-login'],
     createPost: 'is-login',
+  },
+  SocketController: {
+    online: 'is-login',
   }
-
 };

@@ -45,7 +45,7 @@ module.exports.routes = {
   'post /createLink' : 'LinkController.createLink',
   'post /updateLink' : 'LinkController.updateLink',
   'get /user/:id' : 'AccountController.getUser',
-  'get /findUser' : 'SocketController.findUser',
+
 
   'get /talks' : 'TalkController.getTalks',
   'get /talk/:id' : 'TalkController.getTalk',
@@ -55,7 +55,12 @@ module.exports.routes = {
   'post /uploadImage' : 'FileController.uploadAvatar',
 
   'post /createChat' : 'ChatController.createChat',
- 
+
+  'get /findUser' : 'SocketController.findUser',
+  'post /online' : 'SocketController.online',
+  'post /sendMessage' : 'SocketController.sendMessage',
+
+  
 
   /***************************************************************************
   *                                                                          *

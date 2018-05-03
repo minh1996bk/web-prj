@@ -39,7 +39,7 @@ async function getTalk(id) {
     if (!rep.success) {
         return showReport(rep.msg);
     };
-    renderMainSideMessage(rep.talk.messages, rep.host);
+    renderMainSideMessage(rep.talk.messages, rep.host, id);
 }
 
 
@@ -60,9 +60,24 @@ function renderLeftSideMessage(talks) {
     leftside.append(leftHtm);
 }
 
-function renderMainSideMessage(messages, host) {
-    let htm = chatHtml(messages, host);
+function renderMainSideMessage(messages, host, talkId) {
+    let htm = chatHtml(messages, host, talkId);
     let mainView = $("#view-screen");
     mainView.empty();
     mainView.append(htm);
+}
+
+function sendMessage(talkId) {
+    let textInput = $('#input-message-text');
+    let text = textInput.val();
+    if (!text) return;
+    textInput.val("");
+    io.socket.post('/sendMessage', {
+        roomName: talkId,
+        text: text,
+
+    }, (res, jw) => {
+        console.log(res, jw)
+    });
+
 }

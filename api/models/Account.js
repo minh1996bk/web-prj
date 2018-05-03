@@ -102,7 +102,11 @@ module.exports = {
                 },
                 select: ['id', 'name', 'avatar']
             })
-        }
+        },
+    getAllTalkRooms: async function(userId) {
+        let account = await Account.findOne({'id' : userId})
+        .populate('talks');
 
-   
+        return account.talks.map(talk => talk.id);
+    }
 }

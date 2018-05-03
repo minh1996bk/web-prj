@@ -1,39 +1,15 @@
-function chatHtml(messages, host) {
+function chatHtml(messages, host, talkId) {
+ 
     let messagesText = "";
     messages.forEach(msg => {
-        if (msg.owner.id == host) {
-            messagesText += `<div class="row msg_container base_sent">
-                                <div class="col-md-10 col-xs-10">
-                                    <div class="messages msg_sent">
-                                        <p>that mongodb thing looks good, huh?
-                                        tiny master db, and huge document store</p>
-                                        <time datetime="2009-11-13T20:00">Timothy • 51 min</time>
-                                    </div>
-                                </div>
-                                <div class="avatar">
-                                    <img src="http://www.bitrebels.com/wp-content/uploads/2011/02/Original-Facebook-Geek-Profile-Avatar-1.jpg" class=" img-responsive ">
-                                </div>
-                            </div>`;
-        } else {
-            messagesText += `<div class="row msg_container base_receive">
-                                <div class="avatar">
-                                    <img src="http://www.bitrebels.com/wp-content/uploads/2011/02/Original-Facebook-Geek-Profile-Avatar-1.jpg" class=" img-responsive ">
-                                </div>
-                                <div class="col-md-10 col-xs-10">
-                                    <div class="messages msg_receive">
-                                        <p>that mongodb thing looks good, huh?
-                                        tiny master db, and huge document store</p>
-                                        <time datetime="2009-11-13T20:00">Timothy • 51 min</time>
-                                    </div>
-                                </div>
-                            </div>`;
-        }
+        messagesText += aMessageHtm(msg, host);
     })
 
 
     return `
     
     <div>
+        <input id='inputCurrentTalk' type='hidden' value='${talkId}'>
         <div class="row chat-window " id="chat_window_1" style="margin-left:10px;">
             <div class="col-xs-12 col-md-12">
                 <div class="panel panel-default chat-box">
@@ -42,14 +18,14 @@ function chatHtml(messages, host) {
                             <h3 class="panel-title"><span class="glyphicon glyphicon-comment"></span> Chat</h3>
                         </div>
                     </div>
-                    <div class="panel-body msg_container_base">
+                    <div id="messages-view" class="panel-body msg_container_base">
                         ${messagesText}
                     </div>
                     <div class="panel-footer input-chat">
                         <div class="input-group">
-                            <input id="btn-input" type="text" class="form-control input-sm chat_input" placeholder="Write your message here..." />
+                            <input id="input-message-text" type="text" class="form-control input-sm chat_input" placeholder="Write your message here..." />
                             <span class="input-group-btn">
-                            <button class="btn btn-primary btn-sm" id="btn-chat">Send</button>
+                            <button class="btn btn-primary btn-sm" id="btn-chat" onclick="sendMessage(${talkId})">Send</button>
                             </span>
                         </div>
                     </div>
@@ -92,4 +68,32 @@ function leftSideMessageHtm(talks) {
         <div class="list-group">
             ${htm}
         </div>`;
+}
+
+function aMessageHtm(msg, host) {
+    if (msg.owner.id == host) {
+        return `<div class="row msg_container base_sent">
+                            <div class="col-md-10 col-xs-10">
+                                <div class="messages msg_sent">
+                                    <p>${msg.text}</p>
+                                    <time datetime="2009-11-13T20:00">Timothy • 51 min</time>
+                                </div>
+                            </div>
+                            <div class="avatar">
+                                <img src="http://www.bitrebels.com/wp-content/uploads/2011/02/Original-Facebook-Geek-Profile-Avatar-1.jpg" class=" img-responsive ">
+                            </div>
+                        </div>`;
+    } else {
+        return `<div class="row msg_container base_receive">
+                            <div class="avatar">
+                                <img src="http://www.bitrebels.com/wp-content/uploads/2011/02/Original-Facebook-Geek-Profile-Avatar-1.jpg" class=" img-responsive ">
+                            </div>
+                            <div class="col-md-10 col-xs-10">
+                                <div class="messages msg_receive">
+                                    <p>${msg.text}</p>
+                                    <time datetime="2009-11-13T20:00">Timothy • 51 min</time>
+                                </div>
+                            </div>
+                        </div>`;
+    }
 }

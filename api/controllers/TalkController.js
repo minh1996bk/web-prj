@@ -3,14 +3,6 @@ module.exports = {
         let owner = req.session.userId;
         let members = req.body.members;
 
-        if (req.body.withFriend) {
-            let friendId = members[0];
-            let talkId = await Link.getTalkId(owner, friendId);
-            if (talkId) return res.json({
-                success: true,
-                talkId: talkId,
-            })
-        }
         let newTalk = await Talk.create({
             name: req.body.name,
         })
@@ -42,6 +34,20 @@ module.exports = {
     getTalk: async function(req, res) {
         let talk = await Talk.findOne({'id': req.params.id})
         .populate('members').populate('messages');
+        let messages = talk.messages;
+
+        let messageOwners = await Account.find({
+            where: {
+                id: _.pluck(messages, 'owner')
+            },
+            select: ['id', 'name', 'avatar']
+        });
+        messageOwners = _.indexBy(messageOwners, 'id');
+        messages = messages.map(msg => {
+            msg.owner = messageOwners[msg.owner];
+            return msg;
+        })
+
         return res.json({
             success: true,
             host: req.session.userId,
