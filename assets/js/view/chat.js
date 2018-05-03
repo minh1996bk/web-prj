@@ -23,7 +23,7 @@ function chatHtml(messages, host, talkId) {
                     </div>
                     <div class="panel-footer input-chat">
                         <div class="input-group">
-                            <input id="input-message-text" type="text" class="form-control input-sm chat_input" placeholder="Write your message here..." />
+                            <input id="input-message-text" type="text" class="form-control input-sm chat_input" onkeypress="return sendMessageEnter(event, ${talkId})" placeholder="Write your message here..." />
                             <span class="input-group-btn">
                             <button class="btn btn-primary btn-sm" id="btn-chat" onclick="sendMessage(${talkId})">Send</button>
                             </span>

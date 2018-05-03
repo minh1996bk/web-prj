@@ -87,6 +87,13 @@ function sendMessage(talkId) {
 
 }
 
+function sendMessageEnter(i, talkId) {
+
+    if(i.key == "Enter") {
+        sendMessage(talkId);
+    }
+}
+
 function showNewMessageIcon() {
     $('#icon-new-message').addClass('glyphicon glyphicon-envelope');
 }
