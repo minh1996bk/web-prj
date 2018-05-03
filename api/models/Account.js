@@ -14,6 +14,7 @@ module.exports = {
       university: 'string',
       corp: 'string',
       avatar: 'string',
+      socketId: 'string',
       posts: {
           collection: 'post',
           via: 'owner'

@@ -61,6 +61,7 @@ module.exports.routes = {
   'get /findUser' : 'SocketController.findUser',
   'post /online' : 'SocketController.online',
   'post /sendMessage' : 'SocketController.sendMessage',
+  'post /joinRoom' : 'SocketController.joinRoom'
 
   
 

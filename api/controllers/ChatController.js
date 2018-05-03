@@ -13,6 +13,22 @@ module.exports = {
         let members = [owner, friend];
         let talkId = newTalk.id;
 
+
+        let users = await Account.find({
+            where: {
+                id: {
+                    'in': members
+                }
+            },
+            select: ['socketId']
+        })
+
+        users.forEach(user => {
+            sails.sockets.broadcast(user.socketId, 'invite', {
+                talkId: newTalk.id
+            });
+        })
+       
         await Talk.addToCollection(talkId, 'members')
         .members(members);
         await Chat.createChat(owner, friend, talkId);

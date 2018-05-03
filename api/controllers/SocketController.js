@@ -13,9 +13,14 @@ module.exports = {
         if (!req.isSocket) {
             return res.badRequest();
         }
-      
+        await Account.update({
+            'id': req.session.userId
+        })
+        .set({
+            socketId: sails.sockets.getId(req),
+        })
         let talkRooms = await Account.getAllTalkRooms(req.session.userId);
-
+        
         sails.sockets.join(req, talkRooms);
         res.ok();
     },
@@ -57,5 +62,15 @@ module.exports = {
 
         
         res.ok();
+    },
+
+    joinRoom: async function(req, res) {
+  
+        if (!req.isSocket) {
+            return res.badRequest();
+        }
+        let talkId = req.body.talkId;
+
+        sails.sockets.join(req, talkId);
     }
 }

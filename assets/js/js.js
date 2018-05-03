@@ -13,11 +13,20 @@ var hostData;
 })();
 
 $(document).ready(function() {
-    io.socket.post('/online', {name: "minh"}, (res, jwres) => {
+    io.socket.post('/online', (res, jwres) => {
         //just ignore!!!
     })
 
     io.socket.on('sendMessage', renderIncomingMessage);
+
+    io.socket.on('invite', (data) => {
+        console.log(data);
+        io.socket.post('/joinRoom', {
+            talkId: data.talkId
+        }, (res, jw) => {
+            console.log(res, jw)
+        })
+    })
 })
 
 function renderIncomingMessage(data) {
