@@ -51,7 +51,7 @@ module.exports.datastores = {
   //  adapter: 'sails-mongo',
   //  url: 'mongodb://localhost/cnweb'
     adapter: require('sails-mysql'),
-    url: 'mysql://root:@localhost:3306/cnweb'
+    url: 'mysql://sql12236118:dGpuagXhY2@sql12.freemysqlhosting.net/sql12236118'
 
   },
 
